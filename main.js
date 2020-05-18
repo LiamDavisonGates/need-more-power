@@ -260,6 +260,54 @@ function buyPowerPerTick() {
   }
 }
 
+function updateText(update) {
+    if (update == "Power") {
+        document.getElementById("RPM").innerHTML =  formatNumber(gameData.turbineSpeed + gameData.turbineMinSpeed) + " RPM"
+        document.getElementById("currentPower").innerHTML = 'Stored power: ' + formatNumber(gameData.currentPower) + "W/" + formatNumber(gameData.totalPowerStorage) + "W"
+        document.getElementById("RPMTipText").innerHTML = formatNumber(gameData.generatorEfficency * ((gameData.turbineSpeed + gameData.turbineMinSpeed)/1000)*4) + "W per sec"
+    } else if (update == "Buildings") {
+        document.getElementById("getPump").innerHTML = "Buy pump (Currently Ownd " + gameData.pumps + ") Cost: " + formatNumber(gameData.pumpCost) + " Steel"
+        document.getElementById("getDril").innerHTML = "Buy dril (Currently Ownd " + gameData.drils + ") Cost: " + formatNumber(gameData.drilCost) + " Iron"
+        document.getElementById("getMine").innerHTML = "Buy mine (Currently Ownd " + gameData.mines + ") Cost: " + formatNumber(gameData.mineCost) + " Wood"
+        document.getElementById("getDigger").innerHTML = "Buy digger (Currently Ownd " + gameData.diggers + ") Cost: " + formatNumber(gameData.diggerCost) + " Wood"
+    } else if (update == "Upgrades") {
+        document.getElementById("perClickUpgrade").innerHTML = "Upgrade Turbine (Currently Level " + gameData.powerPerTick + ") Cost: " + formatNumber(gameData.powerPerTickCost) + "W"
+        document.getElementById("buyBatteryButton").innerHTML = "Buy Battery (Currently Ownd " + gameData.batteries + ") Cost: " + formatNumber(gameData.batteryCost) + "W"
+        document.getElementById("buyCapasitorButton").innerHTML = "Buy Capasitor (Currently Ownd " + gameData.capasitors + ") Cost: " + formatNumber(gameData.capasitorCost) + "W"
+    } else if (update == "Materials") {
+        document.getElementById("oilDisplay").innerHTML = "oil: " + formatNumber(gameData.oil)
+        document.getElementById("coalDisplay").innerHTML = "coal: " + formatNumber(gameData.coal)
+        document.getElementById("ironDisplay").innerHTML = "iron: " + formatNumber(gameData.iron)
+        document.getElementById("sandDisplay").innerHTML = "sand: " + formatNumber(gameData.sand)
+        document.getElementById("plasticDisplay").innerHTML = "plastic: " + formatNumber(gameData.plastic)
+        document.getElementById("glassDisplay").innerHTML = "glass: " + formatNumber(gameData.glass)
+        document.getElementById("steelDisplay").innerHTML = "steel: " + formatNumber(gameData.steel)
+        document.getElementById("woodDisplay").innerHTML = "wood: " + formatNumber(gameData.wood)
+    } else if (update == "Space") {
+        document.getElementById("buyTelescopeButton").innerHTML = "Upgrade telescope (Currently Level " + spaceData.telescopeLevel + ") Cost: " + formatNumber(spaceData.telescopeCost) + "W"
+        document.getElementById("turnTelescope_On_Off").innerHTML = "Telescope " + spaceData.telescopeOn + " (energy cost " + spaceData.energyCost*4 + "W/s)"
+        if (spaceData.area == 1) {
+            document.getElementById("changeSpaceArea").innerHTML = "Looking out at 0LY to 1LY (" + formatNumber(100 - spaceData.freeSpaceArea1/10) + "% compleat)"
+        } else if (spaceData.area == 2) {
+            document.getElementById("changeSpaceArea").innerHTML = "Looking out at 1LY to 10LY (" + formatNumber(100 - spaceData.freeSpaceArea2/100) + "% compleat)"
+        } else if (spaceData.area == 3) {
+            document.getElementById("changeSpaceArea").innerHTML = "Looking out at 10LY to 100LY (" + formatNumber(100 - spaceData.freeSpaceArea3/1000) + "% compleat)"
+        }
+    } else if (update == "Workers") {
+        document.getElementById("buyWorker").innerHTML = "Buy worker (" + workerData.workers + ") Cost: " + formatNumber(workerData.workerCost) + "W"
+        document.getElementById("freeWorkers").innerHTML = "Free workers " + workerData.freeWorkers
+        document.getElementById("energyWorkers").innerHTML = "Energy workers " + workerData.energyWorker
+        document.getElementById("woodWorkers").innerHTML = "Wood workers " + workerData.woodWorker
+        document.getElementById("sandWorkers").innerHTML = "Sand workers " + workerData.sandWorker
+        document.getElementById("glassWorkers").innerHTML = "Glass workers " + workerData.glassWorker
+        document.getElementById("ironWorkers").innerHTML = "Iron workers " + workerData.ironWorker
+        document.getElementById("coalWorkers").innerHTML = "Coal workers " + workerData.coalWorker
+        document.getElementById("steelWorkers").innerHTML = "Steel workers " + workerData.steelWorker
+        document.getElementById("oilWorkers").innerHTML = "Oil workers " + workerData.oilWorker
+        document.getElementById("plasticWorkers").innerHTML = "Plastic workers " + workerData.plasticWorker
+    }
+}
+
 var mainGameLoop = window.setInterval(function() {
   slowTurbine()
   makePower(gameData.generatorEfficency * ((gameData.turbineSpeed + gameData.turbineMinSpeed)/1000))
