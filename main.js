@@ -1,4 +1,3 @@
-
 var GameData = {
   var PowerData = {
       currentPower: 0,
