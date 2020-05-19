@@ -32,6 +32,7 @@ var TurbineData = {
 var MiscellaneousData = {
     numberFormat: 2,
     gameTicks: 0,
+    gameSpeed: 250,
 }
 
 var StockpillData = {
@@ -123,33 +124,33 @@ var IotaData = {
 }
 
 var WorkerStatusData = {
-    workers: 1,
+    workers: 9,
     freeWorkers: 0,
     workerCost: 10000,
 }
 
 var JobData = {
     energyWorker: 1,
-    woodWorker: 0,
-    sandWorker: 0,
-    glassWorker: 0,
-    ironWorker: 0,
-    coalWorker: 0,
-    steelWorker: 0,
-    oilWorker: 0,
-    plasticWorker: 0,
+    woodWorker: 1,
+    sandWorker: 1,
+    glassWorker: 1,
+    ironWorker: 1,
+    coalWorker: 1,
+    steelWorker: 1,
+    oilWorker: 1,
+    plasticWorker: 1,
 }
 
 var JobEfficiencyData = {
     energyWorkerEfficiency: 0.1,
-    woodWorkerEfficiency: 5,
-    sandWorkerEfficiency: 5,
-    glassWorkerEfficiency: 0.5,
-    ironWorkerEfficiency: 0.01,
-    coalWorkerEfficiency: 0.01,
-    steelWorkerEfficiency: 0.001,
-    oilWorkerEfficiency: 0.001,
-    plasticWorkerEfficiency: 0.0001,
+    woodWorkerEfficiency: 0.1,
+    sandWorkerEfficiency: 0.05,
+    glassWorkerEfficiency: 0.05,
+    ironWorkerEfficiency: 0.025,
+    coalWorkerEfficiency: 0.025,
+    steelWorkerEfficiency: 0.01,
+    oilWorkerEfficiency: 0.01,
+    plasticWorkerEfficiency: 0.01,
 }
 
 var JobTimeData = {
@@ -177,12 +178,12 @@ var JobProductionData = {
     energyJobProduction: 100,
     woodJobProduction: 5,
     sandJobProduction: 5,
-    glassJobProduction: 0.5,
-    ironJobProduction: 0.01,
-    coalJobProduction: 0.01,
-    steelJobProduction: 0.001,
-    oilJobProduction: 0.001,
-    plasticJobProduction: 0.0001,
+    glassJobProduction: 5,
+    ironJobProduction: 1,
+    coalJobProduction: 1,
+    steelJobProduction: 1,
+    oilJobProduction: 0.1,
+    plasticJobProduction: 0.1,
 }
 
 function formatNumber(number) {
@@ -427,18 +428,42 @@ function stopWorkerJob(job, workers) {
 function workers() {
     if (WorkerStatusData.workers > 0) {
         JobTimeData.energyJobTimeCurrent -= JobData.energyWorker * JobEfficiencyData.energyWorkerEfficiency
-        StockpillData.wood += JobData.woodWorker * JobEfficiencyData.woodWorkerEfficiency
-        StockpillData.sand += JobData.sandWorker * JobEfficiencyData.sandWorkerEfficiency
-        StockpillData.glass += JobData.glassWorker * JobEfficiencyData.glassWorkerEfficiency
-        StockpillData.iron += JobData.ironWorker * JobEfficiencyData.ironWorkerEfficiency
-        StockpillData.coal += JobData.coalWorker * JobEfficiencyData.coalWorkerEfficiency
-        StockpillData.steel += JobData.steelWorker * JobEfficiencyData.steelWorkerEfficiency
-        StockpillData.oil += JobData.oilWorker * JobEfficiencyData.oilWorkerEfficiency
-        StockpillData.plastic += JobData.plasticWorker * JobEfficiencyData.plasticWorkerEfficiency
+        JobTimeData.woodJobTimeCurrent -= JobData.woodWorker * JobEfficiencyData.woodWorkerEfficiency
+        JobTimeData.sandJobTimeCurrent -= JobData.sandWorker * JobEfficiencyData.sandWorkerEfficiency
+        JobTimeData.glassJobTimeCurrent -= JobData.glassWorker * JobEfficiencyData.glassWorkerEfficiency
+        JobTimeData.ironJobTimeCurrent -= JobData.ironWorker * JobEfficiencyData.ironWorkerEfficiency
+        JobTimeData.coalJobTimeCurrent -= JobData.coalWorker * JobEfficiencyData.coalWorkerEfficiency
+        JobTimeData.steelJobTimeCurrent -= JobData.steelWorker * JobEfficiencyData.steelWorkerEfficiency
+        JobTimeData.oilJobTimeCurrent -= JobData.oilWorker * JobEfficiencyData.oilWorkerEfficiency
+        JobTimeData.plasticJobTimeCurrent -= JobData.plasticWorker * JobEfficiencyData.plasticWorkerEfficiency
     }
     if (JobTimeData.energyJobTimeCurrent <= 0) {
         JobTimeData.energyJobTimeCurrent = JobTimeData.energyJobTime
         spinTurbine(JobProductionData.energyJobProduction)
+    } else if (JobTimeData.woodJobTimeCurrent <= 0) {
+        JobTimeData.woodJobTimeCurrent = JobTimeData.woodJobTime
+        StockpillData.wood += JobProductionData.woodJobProduction
+    } else if (JobTimeData.sandJobTimeCurrent <= 0) {
+        JobTimeData.sandJobTimeCurrent = JobTimeData.sandJobTime
+        StockpillData.sand += JobProductionData.sandJobProduction
+    } else if (JobTimeData.glassJobTimeCurrent <= 0) {
+        JobTimeData.glassJobTimeCurrent = JobTimeData.glassJobTime
+        StockpillData.glass += JobProductionData.glassJobProduction
+    } else if (JobTimeData.ironJobTimeCurrent <= 0) {
+        JobTimeData.ironJobTimeCurrent = JobTimeData.ironJobTime
+        StockpillData.iron += JobProductionData.ironJobProduction
+    } else if (JobTimeData.coalJobTimeCurrent <= 0) {
+        JobTimeData.coalJobTimeCurrent = JobTimeData.coalJobTime
+        StockpillData.coal += JobProductionData.coalJobProduction
+    } else if (JobTimeData.steelJobTimeCurrent <= 0) {
+        JobTimeData.steelJobTimeCurrent = JobTimeData.steelJobTime
+        StockpillData.steel += JobProductionData.steelJobProduction
+    } else if (JobTimeData.oilJobTimeCurrent <= 0) {
+        JobTimeData.oilJobTimeCurrent = JobTimeData.oilJobTime
+        StockpillData.oil += JobProductionData.oilJobProduction
+    } else if (JobTimeData.plasticJobTimeCurrent <= 0) {
+        JobTimeData.plasticJobTimeCurrent = JobTimeData.plasticJobTime
+        StockpillData.plastic += JobProductionData.plasticJobProduction
     }
 }
 
@@ -784,4 +809,4 @@ var mainGameLoop = window.setInterval(function() {
     useTelescope()
     gatherMaterials()
     MiscellaneousData.gameTicks += 1
-}, 250)
+}, MiscellaneousData.gameSpeed)
