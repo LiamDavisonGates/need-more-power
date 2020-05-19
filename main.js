@@ -141,7 +141,7 @@ var JobData = {
 }
 
 var JobEfficiencyData = {
-    energyWorkerEfficiency: 5,
+    energyWorkerEfficiency: 0.1,
     woodWorkerEfficiency: 5,
     sandWorkerEfficiency: 5,
     glassWorkerEfficiency: 0.5,
@@ -150,6 +150,39 @@ var JobEfficiencyData = {
     steelWorkerEfficiency: 0.001,
     oilWorkerEfficiency: 0.001,
     plasticWorkerEfficiency: 0.0001,
+}
+
+var JobTimeData = {
+    energyJobTime: 10,
+    energyJobTimeCurrent: 10,
+    woodJobTime: 10,
+    woodJobTimeCurrent: 10,
+    sandJobTime: 15,
+    sandJobTimeCurrent: 15,
+    glassJobTime: 20,
+    glassJobTimeCurrent: 20,
+    ironJobTime: 60,
+    ironJobTimeCurrent: 60,
+    coalJobTime: 60,
+    coalJobTimeCurrent: 60,
+    steelJobTime: 120,
+    steelJobTimeCurrent: 120,
+    oilJobTime: 300,
+    oilJobTimeCurrent: 300,
+    plasticJobTime: 600,
+    plasticJobTimeCurrent: 600,
+}
+
+var JobProductionData = {
+    energyJobProduction: 100,
+    woodJobProduction: 5,
+    sandJobProduction: 5,
+    glassJobProduction: 0.5,
+    ironJobProduction: 0.01,
+    coalJobProduction: 0.01,
+    steelJobProduction: 0.001,
+    oilJobProduction: 0.001,
+    plasticJobProduction: 0.0001,
 }
 
 function formatNumber(number) {
@@ -183,8 +216,8 @@ function formatNumber(number) {
     return number
 }
 
-function spinTurbine() {
-    var speedAddition = TurbineData.turbineSpinForce / TurbineData.turbineMass
+function spinTurbine(amount = TurbineData.turbineSpinForce) {
+    var speedAddition = amount / TurbineData.turbineMass
     if (TurbineData.turbineSpeed + speedAddition <= TurbineData.turbineMaxSpeed) {
         TurbineData.turbineSpeed += speedAddition
     } else if (TurbineData.turbineSpeed + speedAddition > TurbineData.turbineMaxSpeed) {
@@ -393,7 +426,7 @@ function stopWorkerJob(job, workers) {
 
 function workers() {
     if (WorkerStatusData.workers > 0) {
-        TurbineData.turbineMinSpeed += JobData.energyWorker * JobEfficiencyData.energyWorkerEfficiency
+        JobTimeData.energyJobTimeCurrent -= JobData.energyWorker * JobEfficiencyData.energyWorkerEfficiency
         StockpillData.wood += JobData.woodWorker * JobEfficiencyData.woodWorkerEfficiency
         StockpillData.sand += JobData.sandWorker * JobEfficiencyData.sandWorkerEfficiency
         StockpillData.glass += JobData.glassWorker * JobEfficiencyData.glassWorkerEfficiency
@@ -402,6 +435,10 @@ function workers() {
         StockpillData.steel += JobData.steelWorker * JobEfficiencyData.steelWorkerEfficiency
         StockpillData.oil += JobData.oilWorker * JobEfficiencyData.oilWorkerEfficiency
         StockpillData.plastic += JobData.plasticWorker * JobEfficiencyData.plasticWorkerEfficiency
+    }
+    if (JobTimeData.energyJobTimeCurrent <= 0) {
+        JobTimeData.energyJobTimeCurrent = JobTimeData.energyJobTime
+        spinTurbine(JobProductionData.energyJobProduction)
     }
 }
 
