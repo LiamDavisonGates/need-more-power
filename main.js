@@ -1,10 +1,11 @@
-    var PowerData = {
+var PowerData = {
     currentPower: 0,
     totalPower: 0,
     powerPerClick: 1,
     powerPerTick: 1,
     powerPerTickCost: 10,
 }
+
 var PowerStorageData = {
     capasitors: 1,
     capasitorsStorage: 100,
@@ -16,6 +17,7 @@ var PowerStorageData = {
     batteryStorage: 3000,
     totalPowerStorage: 100,
 }
+
 var TurbineData = {
     turbineSpeed: 0,
     turbineMinSpeed: 0,
@@ -26,8 +28,10 @@ var TurbineData = {
     generatorEfficency: 1,
     turbineSpinForce: 10,
 }
+
 var MiscellaneousData = {
     numberFormat: 2,
+    gameTicks: 0,
 }
 
 var StockpillData = {
@@ -42,18 +46,21 @@ var StockpillData = {
     oil: 0,
     stone: 0,
 }
+
 var BuildingData = {
     diggers: 0,
     mines: 0,
     drils: 0,
     pumps: 0,
 }
+
 var BuildingCostData = {
     diggerCost: 50,
     mineCost: 100,
     drilCost: 100,
     pumpCost: 100,
 }
+
 var BuildingEfficiencyData = {
     diggerEfficiency: 0.01,
     mineEfficiency: 0.01,
@@ -66,9 +73,10 @@ var TelescopeData = {
     telescopeCost: 100,
     telescopeStatus: "Off",
     telescopeEnergyCost: 0,
-    serchArea: 1,
+    Area: 1,
     areaSerchSpeed: 0,
 }
+
 var SerchAreaData = {
     freeSpaceArea1: 1000,
     freeSpaceArea2: 10000,
@@ -77,30 +85,39 @@ var SerchAreaData = {
     area2Clear: 0,
     area3Clear: 0,
 }
+
 var AlphaData = {
     alphaLocation: Math.random() * 1000,
 }
+
 var BataData = {
     bataLocation: Math.random() * 1000,
 }
+
 var GammaData = {
     gammaLocation: Math.random() * 1000,
 }
+
 var DeltaData = {
     deltaLocation: Math.random() * 10000,
 }
+
 var EpsilonData = {
     epsilonLocation: Math.random() * 10000,
 }
+
 var ZetaData = {
     zetaLocation: Math.random() * 10000,
 }
+
 var EtaData = {
     etaLocation: Math.random() * 100000,
 }
+
 var TheataData = {
     theataLocation: Math.random() * 100000,
 }
+
 var IotaData = {
     iotaLocation: Math.random() * 100000,
 }
@@ -110,6 +127,7 @@ var WorkerStatusData = {
     freeWorkers: 0,
     workerCost: 10000,
 }
+
 var JobData = {
     energyWorker: 0,
     woodWorker: 0,
@@ -121,6 +139,7 @@ var JobData = {
     oilWorker: 0,
     plasticWorker: 0,
 }
+
 var JobEfficiencyData = {
     energyWorkerEfficiency: 5,
     woodWorkerEfficiency: 5,
@@ -132,7 +151,6 @@ var JobEfficiencyData = {
     oilWorkerEfficiency: 0.001,
     plasticWorkerEfficiency: 0.0001,
 }
-
 
 function formatNumber(number) {
     if (number > 5000000000000000000) {
@@ -253,56 +271,446 @@ function buyPowerPerTick() {
     }
 }
 
+function buyDigger() {
+    if (StockpillData.wood >= BuildingCostData.diggerCost) {
+      StockpillData.wood -= BuildingCostData.diggerCost
+      BuildingData.diggers += 1
+      BuildingCostData.diggerCost *= 1.25
+      updateText("Materials")
+      updateText("Buildings")
+      //document.getElementById("woodDisplay").innerHTML = "wood: " + formatNumber(gameData.wood)
+      //document.getElementById("getDigger").innerHTML = "Buy digger (Currently Ownd " + gameData.diggers + ") Cost: " + formatNumber(gameData.diggerCost) + " Wood"
+    }
+}
+
+function buyMine() {
+    if (StockpillData.wood >= BuildingCostData.mineCost) {
+      StockpillData.wood -= BuildingCostData.mineCost
+      BuildingData.mines += 1
+      BuildingCostData.mineCost *= 1.25
+      document.getElementById("getDril").style.display = "block"
+      updateText("Materials")
+      updateText("Buildings")
+      //document.getElementById("woodDisplay").innerHTML = "wood: " + formatNumber(gameData.wood)
+      //document.getElementById("getMine").innerHTML = "Buy mine (Currently Ownd " + gameData.mines + ") Cost: " + formatNumber(gameData.mineCost) + " Wood"
+    }
+}
+
+function buyDril() {
+    if (StockpillData.iron >= BuildingCostData.drilCost) {
+      StockpillData.iron -= BuildingCostData.drilCost
+      BuildingData.drils += 1
+      BuildingCostData.drilCost *= 1.25
+      updateText("Materials")
+      updateText("Buildings")
+      //document.getElementById("ironDisplay").innerHTML = "iron: " + formatNumber(gameData.iron)
+      //document.getElementById("getDril").innerHTML = "Buy dril (Currently Ownd " + gameData.drils + ") Cost: " + formatNumber(gameData.drilCost) + " Iron"
+    }
+}
+
+function buyPump() {
+    if (StockpillData.steel >= BuildingCostData.pumpCost) {
+      StockpillData.steel -= BuildingCostData.pumpCost
+      BuildingData.pumps += 1
+      BuildingCostData.pumpCost *= 1.25
+      updateText("Materials")
+      updateText("Buildings")
+      //document.getElementById("steelDisplay").innerHTML = "steel: " + formatNumber(gameData.steel)
+      //document.getElementById("getPump").innerHTML = "Buy pump (Currently Ownd " + gameData.pumps + ") Cost: " + formatNumber(gameData.pumpCost) + " Steel"
+    }
+}
+
+function buyWorker() {
+    if (PowerData.currentPower >= WorkerStatusData.workerCost) {
+        WorkerStatusData.workers += 1
+        WorkerStatusData.freeWorkers += 1
+        PowerData.currentPower -= WorkerStatusData.workerCost
+        WorkerStatusData.workerCost *= 1.5
+        updateText("Workers")
+        document.getElementById("energyWorkers").style.display = "block"
+        document.getElementById("energyWorkers+").style.display = "block"
+        document.getElementById("energyWorkers-").style.display = "block"
+    }
+}
+
+function setWorkerJob(job, workers) {
+    if (WorkerStatusData.freeWorkers >= workers) {
+        if (job == "energy") {
+            JobData.energyWorker += workers
+        } else if (job == "wood") {
+            JobData.woodWorker += workers
+        } else if (job == "sand") {
+            JobData.sandWorker += workers
+        } else if (job == "glass") {
+            JobData.glassWorker += workers
+        } else if (job == "iron") {
+            JobData.ironWorker += workers
+        } else if (job == "coal") {
+            JobData.coalWorker += workers
+        } else if (job == "steel") {
+            JobData.steelWorker += workers
+        } else if (job == "oil") {
+            JobData.oilWorker += workers
+        } else if (job == "plastic") {
+            JobData.plasticWorker += workers
+        }
+        WorkerStatusData.freeWorkers -= workers
+        updateText("Workers")
+    }
+}
+
+function stopWorkerJob(job, workers) {
+    if (job == "energy" && JobData.energyWorker >= workers) {
+        JobData.energyWorker -= workers
+        WorkerStatusData.freeWorkers += workers
+    } else if (job == "wood" && JobData.woodWorker >= workers) {
+        JobData.woodWorker -= workers
+        WorkerStatusData.freeWorkers += workers
+    } else if (job == "sand" && JobData.sandWorker >= workers) {
+        JobData.sandWorker -= workers
+        WorkerStatusData.freeWorkers += workers
+    } else if (job == "glass" && JobData.glassWorker >= workers) {
+        JobData.glassWorker -= workers
+        WorkerStatusData.freeWorkers += workers
+    } else if (job == "iron" && JobData.ironWorker >= workers) {
+        JobData.ironWorker -= workers
+        WorkerStatusData.freeWorkers += workers
+    } else if (job == "coal" && JobData.coalWorker >= workers) {
+        JobData.coalWorker -= workers
+        WorkerStatusData.freeWorkers += workers
+    } else if (job == "steel" && JobData.steelWorker >= workers) {
+        JobData.steelWorker -= workers
+        WorkerStatusData.freeWorkers += workers
+    } else if (job == "oil" && JobData.oilWorker >= workers) {
+        JobData.oilWorker -= workers
+        WorkerStatusData.freeWorkers += workers
+    } else if (job == "plastic" && JobData.plasticWorker >= workers) {
+        JobData.plasticWorker -= workers
+        WorkerStatusData.freeWorkers += workers
+    }
+    updateText("Workers")
+}
+
+function workers() {
+    if (WorkerStatusData.workers > 0) {
+        TurbineData.turbineMinSpeed += JobData.energyWorker * JobEfficiencyData.energyWorkerEfficiency
+        StockpillData.wood += JobData.woodWorker * JobEfficiencyData.woodWorkerEfficiency
+        StockpillData.sand += JobData.sandWorker * JobEfficiencyData.sandWorkerEfficiency
+        StockpillData.glass += JobData.glassWorker * JobEfficiencyData.glassWorkerEfficiency
+        StockpillData.iron += JobData.ironWorker * JobEfficiencyData.ironWorkerEfficiency
+        StockpillData.coal += JobData.coalWorker * JobEfficiencyData.coalWorkerEfficiency
+        StockpillData.steel += JobData.steelWorker * JobEfficiencyData.steelWorkerEfficiency
+        StockpillData.oil += JobData.oilWorker * JobEfficiencyData.oilWorkerEfficiency
+        StockpillData.plastic += JobData.plasticWorker * JobEfficiencyData.plasticWorkerEfficiency
+    }
+}
+
+function revealTabs() {
+    if (PowerData.currentPower >= 5) {
+        document.getElementById("upgradesTab").style.display = "block"
+    }
+    if (PowerData.currentPower >= 100) {
+        document.getElementById("materialsTab").style.display = "block"
+    }
+    if (StockpillData.wood >= 5) {
+        document.getElementById("BuildingsTab").style.display = "block"
+    }
+    if (PowerData.currentPower >= 500) {
+        document.getElementById("spaceTab").style.display = "block"
+    }
+    if (PowerData.currentPower >= 10000) {
+        document.getElementById("WorkersTab").style.display = "block"
+    }
+    if (StockpillData.wood > 0) {
+        document.getElementById("woodDisplay").style.display = "block"
+        document.getElementById("woodWorkers").style.display = "block"
+        document.getElementById("woodWorkers+").style.display = "block"
+        document.getElementById("woodWorkers-").style.display = "block"
+    }
+    if (StockpillData.sand > 0) {
+        document.getElementById("sandDisplay").style.display = "block"
+        document.getElementById("sandWorkers").style.display = "block"
+        document.getElementById("sandWorkers+").style.display = "block"
+        document.getElementById("sandWorkers-").style.display = "block"
+    }
+    if (StockpillData.iron > 0) {
+        document.getElementById("ironDisplay").style.display = "block"
+        document.getElementById("ironWorkers").style.display = "block"
+        document.getElementById("ironWorkers+").style.display = "block"
+        document.getElementById("ironWorkers-").style.display = "block"
+    }
+    if (StockpillData.coal > 0) {
+        document.getElementById("coalDisplay").style.display = "block"
+        document.getElementById("coalWorkers").style.display = "block"
+        document.getElementById("coalWorkers+").style.display = "block"
+        document.getElementById("coalWorkers-").style.display = "block"
+    }
+    if (StockpillData.oil > 0) {
+        document.getElementById("oilDisplay").style.display = "block"
+        document.getElementById("oilWorkers").style.display = "block"
+        document.getElementById("oilWorkers+").style.display = "block"
+        document.getElementById("oilWorkers-").style.display = "block"
+    }
+    if (StockpillData.plastic > 0) {
+        document.getElementById("plasticDisplay").style.display = "block"
+        document.getElementById("plasticWorkers").style.display = "block"
+        document.getElementById("plasticWorkers+").style.display = "block"
+        document.getElementById("plasticWorkers-").style.display = "block"
+    }
+    if (StockpillData.glass > 0) {
+        document.getElementById("glassDisplay").style.display = "block"
+        document.getElementById("glassWorkers").style.display = "block"
+        document.getElementById("glassWorkers+").style.display = "block"
+        document.getElementById("glassWorkers-").style.display = "block"
+    }
+    if (StockpillData.steel > 0) {
+        document.getElementById("steelDisplay").style.display = "block"
+        document.getElementById("steelWorkers").style.display = "block"
+        document.getElementById("steelWorkers+").style.display = "block"
+        document.getElementById("steelWorkers-").style.display = "block"
+    }
+}
+
 function updateText(update) {
     if (update == "Power") {
         document.getElementById("RPM").innerHTML = formatNumber(TurbineData.turbineSpeed + TurbineData.turbineMinSpeed) + " RPM"
         document.getElementById("currentPower").innerHTML = 'Stored power: ' + formatNumber(PowerData.currentPower) + "W/" + formatNumber(PowerStorageData.totalPowerStorage) + "W"
         document.getElementById("RPMTipText").innerHTML = formatNumber(TurbineData.generatorEfficency * ((TurbineData.turbineSpeed + TurbineData.turbineMinSpeed) / 1000) * 4) + "W per sec"
     } else if (update == "Buildings") {
-        document.getElementById("getPump").innerHTML = "Buy pump (Currently Ownd " + gameData.pumps + ") Cost: " + formatNumber(gameData.pumpCost) + " Steel"
-        document.getElementById("getDril").innerHTML = "Buy dril (Currently Ownd " + gameData.drils + ") Cost: " + formatNumber(gameData.drilCost) + " Iron"
-        document.getElementById("getMine").innerHTML = "Buy mine (Currently Ownd " + gameData.mines + ") Cost: " + formatNumber(gameData.mineCost) + " Wood"
-        document.getElementById("getDigger").innerHTML = "Buy digger (Currently Ownd " + gameData.diggers + ") Cost: " + formatNumber(gameData.diggerCost) + " Wood"
+        document.getElementById("getPump").innerHTML = "Buy pump (Currently Ownd " + BuildingData.pumps + ") Cost: " + formatNumber(BuildingCostData.pumpCost) + " Steel"
+        document.getElementById("getDril").innerHTML = "Buy dril (Currently Ownd " + BuildingData.drils + ") Cost: " + formatNumber(BuildingCostData.drilCost) + " Iron"
+        document.getElementById("getMine").innerHTML = "Buy mine (Currently Ownd " + BuildingData.mines + ") Cost: " + formatNumber(BuildingCostData.mineCost) + " Wood"
+        document.getElementById("getDigger").innerHTML = "Buy digger (Currently Ownd " + BuildingData.diggers + ") Cost: " + formatNumber(BuildingCostData.diggerCost) + " Wood"
     } else if (update == "Upgrades") {
         document.getElementById("perClickUpgrade").innerHTML = "Upgrade Turbine (Currently Level " + PowerData.powerPerTick + ") Cost: " + formatNumber(PowerData.powerPerTickCost) + "W"
         document.getElementById("buyBatteryButton").innerHTML = "Buy Battery (Currently Ownd " + PowerStorageData.batteries + ") Cost: " + formatNumber(PowerStorageData.batteryCost) + "W"
         document.getElementById("buyCapasitorButton").innerHTML = "Buy Capasitor (Currently Ownd " + PowerStorageData.capasitors + ") Cost: " + formatNumber(PowerStorageData.capasitorCost) + "W"
     } else if (update == "Materials") {
-        document.getElementById("oilDisplay").innerHTML = "oil: " + formatNumber(gameData.oil)
-        document.getElementById("coalDisplay").innerHTML = "coal: " + formatNumber(gameData.coal)
-        document.getElementById("ironDisplay").innerHTML = "iron: " + formatNumber(gameData.iron)
-        document.getElementById("sandDisplay").innerHTML = "sand: " + formatNumber(gameData.sand)
-        document.getElementById("plasticDisplay").innerHTML = "plastic: " + formatNumber(gameData.plastic)
-        document.getElementById("glassDisplay").innerHTML = "glass: " + formatNumber(gameData.glass)
-        document.getElementById("steelDisplay").innerHTML = "steel: " + formatNumber(gameData.steel)
-        document.getElementById("woodDisplay").innerHTML = "wood: " + formatNumber(gameData.wood)
+        document.getElementById("oilDisplay").innerHTML = "oil: " + formatNumber(StockpillData.oil)
+        document.getElementById("coalDisplay").innerHTML = "coal: " + formatNumber(StockpillData.coal)
+        document.getElementById("ironDisplay").innerHTML = "iron: " + formatNumber(StockpillData.iron)
+        document.getElementById("sandDisplay").innerHTML = "sand: " + formatNumber(StockpillData.sand)
+        document.getElementById("plasticDisplay").innerHTML = "plastic: " + formatNumber(StockpillData.plastic)
+        document.getElementById("glassDisplay").innerHTML = "glass: " + formatNumber(StockpillData.glass)
+        document.getElementById("steelDisplay").innerHTML = "steel: " + formatNumber(StockpillData.steel)
+        document.getElementById("woodDisplay").innerHTML = "wood: " + formatNumber(StockpillData.wood)
     } else if (update == "Space") {
-        document.getElementById("buyTelescopeButton").innerHTML = "Upgrade telescope (Currently Level " + spaceData.telescopeLevel + ") Cost: " + formatNumber(spaceData.telescopeCost) + "W"
-        document.getElementById("turnTelescope_On_Off").innerHTML = "Telescope " + spaceData.telescopeOn + " (energy cost " + spaceData.energyCost * 4 + "W/s)"
+        document.getElementById("buyTelescopeButton").innerHTML = "Upgrade telescope (Currently Level " + TelescopeData.telescopeLevel + ") Cost: " + formatNumber(TelescopeData.telescopeCost) + "W"
+        document.getElementById("turnTelescope_On_Off").innerHTML = "Telescope " + TelescopeData.telescopeOn + " (energy cost " + TelescopeData.telescopeEnergyCost * 4 + "W/s)"
         if (spaceData.area == 1) {
-            document.getElementById("changeSpaceArea").innerHTML = "Looking out at 0LY to 1LY (" + formatNumber(100 - spaceData.freeSpaceArea1 / 10) + "% compleat)"
+            document.getElementById("changeSpaceArea").innerHTML = "Looking out at 0LY to 1LY (" + formatNumber(100 - SerchAreaData.freeSpaceArea1 / 10) + "% compleat)"
         } else if (spaceData.area == 2) {
-            document.getElementById("changeSpaceArea").innerHTML = "Looking out at 1LY to 10LY (" + formatNumber(100 - spaceData.freeSpaceArea2 / 100) + "% compleat)"
+            document.getElementById("changeSpaceArea").innerHTML = "Looking out at 1LY to 10LY (" + formatNumber(100 - SerchAreaData.freeSpaceArea2 / 100) + "% compleat)"
         } else if (spaceData.area == 3) {
-            document.getElementById("changeSpaceArea").innerHTML = "Looking out at 10LY to 100LY (" + formatNumber(100 - spaceData.freeSpaceArea3 / 1000) + "% compleat)"
+            document.getElementById("changeSpaceArea").innerHTML = "Looking out at 10LY to 100LY (" + formatNumber(100 - SerchAreaData.freeSpaceArea3 / 1000) + "% compleat)"
         }
     } else if (update == "Workers") {
-        document.getElementById("buyWorker").innerHTML = "Buy worker (" + workerData.workers + ") Cost: " + formatNumber(workerData.workerCost) + "W"
-        document.getElementById("freeWorkers").innerHTML = "Free workers " + workerData.freeWorkers
-        document.getElementById("energyWorkers").innerHTML = "Energy workers " + workerData.energyWorker
-        document.getElementById("woodWorkers").innerHTML = "Wood workers " + workerData.woodWorker
-        document.getElementById("sandWorkers").innerHTML = "Sand workers " + workerData.sandWorker
-        document.getElementById("glassWorkers").innerHTML = "Glass workers " + workerData.glassWorker
-        document.getElementById("ironWorkers").innerHTML = "Iron workers " + workerData.ironWorker
-        document.getElementById("coalWorkers").innerHTML = "Coal workers " + workerData.coalWorker
-        document.getElementById("steelWorkers").innerHTML = "Steel workers " + workerData.steelWorker
-        document.getElementById("oilWorkers").innerHTML = "Oil workers " + workerData.oilWorker
-        document.getElementById("plasticWorkers").innerHTML = "Plastic workers " + workerData.plasticWorker
+        document.getElementById("buyWorker").innerHTML = "Buy worker (" + WorkerStatusData.workers + ") Cost: " + formatNumber(WorkerStatusData.workerCost) + "W"
+        document.getElementById("freeWorkers").innerHTML = "Free workers " + WorkerStatusData.freeWorkers
+        document.getElementById("energyWorkers").innerHTML = "Energy workers " + JobData.energyWorker
+        document.getElementById("woodWorkers").innerHTML = "Wood workers " + JobData.woodWorker
+        document.getElementById("sandWorkers").innerHTML = "Sand workers " + JobData.sandWorker
+        document.getElementById("glassWorkers").innerHTML = "Glass workers " + JobData.glassWorker
+        document.getElementById("ironWorkers").innerHTML = "Iron workers " + JobData.ironWorker
+        document.getElementById("coalWorkers").innerHTML = "Coal workers " + JobData.coalWorker
+        document.getElementById("steelWorkers").innerHTML = "Steel workers " + JobData.steelWorker
+        document.getElementById("oilWorkers").innerHTML = "Oil workers " + JobData.oilWorker
+        document.getElementById("plasticWorkers").innerHTML = "Plastic workers " + JobData.plasticWorker
     }
+}
+
+function chopWood(number){
+    if (PowerData.currentPower >= number) {
+      StockpillData.wood += number
+      PowerData.currentPower -= number
+      document.getElementById("woodDisplay").style.display = "block"
+      document.getElementById("getDigger").style.display = "block"
+      document.getElementById("getMine").style.display = "block"
+      updateText("Materials")
+      updateText("Power")
+      //document.getElementById("woodDisplay").innerHTML = "wood: " + formatNumber(gameData.wood)
+      //document.getElementById("currentPower").innerHTML = 'Stored power: ' + formatNumber(gameData.currentPower) + "W/" + formatNumber(gameData.totalPowerStorage) + "W"
+    }
+}
+
+function makeSteel(number) {
+  if (StockpillData.coal >= 10*number && gameData.iron >= 100*number) {
+    StockpillData.steel += number
+    StockpillData.coal -= 10*number
+    StockpillData.iron -= 100*number
+    document.getElementById("getPump").style.display = "block"
+    document.getElementById("steelDisplay").style.display = "block"
+    updateText("Materials")
+    //document.getElementById("steelDisplay").innerHTML = "steel: " + formatNumber(gameData.steel)
+    //document.getElementById("currentPower").innerHTML = 'Stored power: ' + formatNumber(gameData.currentPower) + "W/" + formatNumber(gameData.totalPowerStorage) + "W"
+  }
+}
+
+function makeGlass(number) {
+  if (StockpillData.sand >= 10*number) {
+    StockpillData.glass += number
+    StockpillData.sand -= 10*number
+    document.getElementById("glassDisplay").style.display = "block"
+    updateText("Materials")
+    //document.getElementById("glassDisplay").innerHTML = "glass: " + formatNumber(gameData.glass)
+    //document.getElementById("currentPower").innerHTML = 'Stored power: ' + formatNumber(gameData.currentPower) + "W/" + formatNumber(gameData.totalPowerStorage) + "W"
+  }
+}
+
+function makePlastic(number) {
+  if (StockpillData.oil >= 10*number) {
+    StockpillData.plastic += number
+    StockpillData.oil -= 10*number
+    document.getElementById("plasticDisplay").style.display = "block"
+    updateText("Materials")
+    //document.getElementById("plasticDisplay").innerHTML = "plastic: " + formatNumber(gameData.plastic)
+    //document.getElementById("currentPower").innerHTML = 'Stored power: ' + formatNumber(gameData.currentPower) + "W/" + formatNumber(gameData.totalPowerStorage) + "W"
+  }
+}
+
+function buyTelescope () {
+  if (PowerData.currentPower >= TelescopeData.telescopeCost) {
+    TelescopeData.telescopeLevel += 1
+    TelescopeData.currentPower -= TelescopeData.telescopeCost
+    TelescopeData.telescopeCost *= 1000
+    TelescopeData.spaceSerchSpeed += 1
+    document.getElementById("turnTelescope_On_Off").style.display = "block"
+    document.getElementById("changeSpaceArea").style.display = "block"
+    document.getElementById("exploration").style.display = "block"
+    updateText("Space")
+    //document.getElementById("currentPower").innerHTML = 'Stored power: ' + formatNumber(gameData.currentPower) + "W/" + formatNumber(gameData.totalPowerStorage) + "W"
+    //document.getElementById("buyTelescopeButton").innerHTML = "Upgrade telescope (Currently Level " + spaceData.telescopeLevel + ") Cost: " + formatNumber(spaceData.telescopeCost) + "W"
+  }
+}
+
+function turnTelescopeOn_Off() {
+  if (TelescopeData.telescopeStatus == "Off") {
+    TelescopeData.telescopeStatus = "On"
+    TelescopeData.telescopeEnergyCost = TelescopeData.telescopeLevel*10
+    //document.getElementById("turnTelescope_On_Off").innerHTML = "Telescope On (energy cost " + spaceData.energyCost*4 + "W/s)"
+  }
+  else if (TelescopeData.telescopeStatus == "On") {
+    TelescopeData.telescopeStatus = "Off"
+    TelescopeData.telescopeEnergyCost = 0
+    //document.getElementById("turnTelescope_On_Off").innerHTML = "Telescope Off (energy cost 0W/s)"
+  }
+  updateText("Space")
+}
+
+function selectSpaceArer() {
+  if (TelescopeData.area == 1){
+      TelescopeData.area = 2
+      //document.getElementById("changeSpaceArea").innerHTML = "Looking out out at 1LY to 10LY (" + formatNumber(100 - spaceData.freeSpaceArea2/100) + "% compleat)"
+  }
+  else if (TelescopeData.area == 2){
+      TelescopeData.area = 3
+      //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 10LY to 100LY (" + formatNumber(100 - spaceData.freeSpaceArea3/1000) + "% compleat)"
+  }
+  else if (TelescopeData.area == 3){
+      TelescopeData.area = 1
+      //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 0LY to 1LY (" + formatNumber(100 - spaceData.freeSpaceArea1/10) + "% compleat)"
+  }
+  updateText("Space")
+}
+
+function useTelescope () {
+  if (PowerData.currentPower >= TelescopeData.telescopeEnergyCost && TelescopeData.telescopeStatus == "On") {
+    serchSpace(TelescopeData.area)
+    PowerData.currentPower -= TelescopeData.telescopeEnergyCost
+    updateText("Space")
+    //document.getElementById("currentPower").innerHTML = 'Stored power: ' + formatNumber(gameData.currentPower) + "W/" + formatNumber(gameData.totalPowerStorage) + "W"
+  }
+  else if (TelescopeData.telescopeStatus == "On") {
+    turnTelescopeOn_Off ()
+    updateText("Space")
+  }
+}
+
+function serchSpace(area) {
+  if (area == 1 && SerchAreaData.area1Clear == 0){
+    SerchAreaData.freeSpaceArea1 -= TelescopeData.areaSerchSpeed
+    if (SerchAreaData.freeSpaceArea1 < AlphaData.alphaLocation){
+        AlphaData.alphaLocation = 0
+      document.getElementById("planet_alpha").style.display = "block"
+    }
+    else if (SerchAreaData.freeSpaceArea1 < BataData.bataLocation){
+      BataData.bataLocation = 0
+      document.getElementById("planet_bata").style.display = "block"
+    }
+    else if (SerchAreaData.freeSpaceArea1 < GammaData.gammaLocation){
+        GammaData.gammaLocation = 0
+      document.getElementById("planet_gamma").style.display = "block"
+    }
+    //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 0LY to 1LY (" + formatNumber(100 - spaceData.freeSpaceArea1/10) + "% compleat)"
+    if (SerchAreaData.freeSpaceArea1 <= 0) {
+        SerchAreaData.area1Clear = 1
+        TelescopeData.telescopeOn = "Off"
+        SerchAreaData.freeSpaceArea1 = 0
+        turnTelescopeOn_Off()
+        //document.getElementById("turnTelescope_On_Off").innerHTML = "Telescope Off (energy cost 0W/s)"
+        //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 0LY to 1LY (100% compleat)"
+    }
+    updateText("Space")
+  }
+  else if (area == 2 && SerchAreaData.area2Clear == 0){
+    SerchAreaData.freeSpaceArea2 -= TelescopeData.areaSerchSpeed
+    if (SerchAreaData.freeSpaceArea2 < DeltaData.deltaLocation){
+      DeltaData.deltaLocation = 0
+      document.getElementById("planet_delta").style.display = "block"
+    }
+    else if (SerchAreaData.freeSpaceArea2 < EpsilonData.epsilonLocation){
+        EpsilonData.epsilonLocation = 0
+      document.getElementById("planet_epsilon").style.display = "block"
+    }
+    else if (SerchAreaData.freeSpaceArea2 < ZetaData.zetaLocation){
+        ZetaData.zetaLocation = 0
+      document.getElementById("planet_zeta").style.display = "block"
+    }
+    //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 1LY to 10LY (" + formatNumber(100 - spaceData.freeSpaceArea2/100) + "% compleat)"
+    if (SerchAreaData.freeSpaceArea2 <= 0) {
+      SerchAreaData.area2Clear = 1
+      TelescopeData.telescopeOn = "Off"
+      SerchAreaData.freeSpaceArea2 = 0
+      turnTelescopeOn_Off()
+      //document.getElementById("turnTelescope_On_Off").innerHTML = "Telescope Off (energy cost 0W/s)"
+      //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 1LY to 10LY (100% compleat)"
+    }
+    updateText("Space")
+  }
+  else if (area == 3 && SerchAreaData.area3Clear == 0){
+    SerchAreaData.freeSpaceArea3 -= TelescopeData.areaSerchSpeed
+    if (SerchAreaData.freeSpaceArea3 < EtaData.etaLocation){
+      EtaData.etaLocation = 0
+      document.getElementById("planet_eta").style.display = "block"
+    }
+    else if (SerchAreaData.freeSpaceArea3 < TheataData.TheataLocation){
+      TheataData.TheataLocation = 0
+      document.getElementById("planet_theata").style.display = "block"
+    }
+    else if (SerchAreaData.freeSpaceArea3 < IotaData.iotaLocation){
+      IotaData.iotaLocation = 0
+      document.getElementById("planet_iota").style.display = "block"
+    }
+    //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 10LY to 100LY (" + formatNumber(100 - spaceData.freeSpaceArea3/1000) + "% compleat)"
+    if (SerchAreaData.freeSpaceArea3 <= 0) {
+        SerchAreaData.area3Clear = 1
+        TelescopeData.telescopeOn = "Off"
+        SerchAreaData.freeSpaceArea3 = 0
+        turnTelescopeOn_Off()
+        //document.getElementById("turnTelescope_On_Off").innerHTML = "Telescope Off (energy cost 0W/s)"
+        //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 10LY to 100LY (100% compleat)"
+    }
+    updateText("Space")
+  }
 }
 
 var mainGameLoop = window.setInterval(function() {
     slowTurbine()
     makePower(TurbineData.generatorEfficency * ((TurbineData.turbineSpeed + TurbineData.turbineMinSpeed) / 1000))
     TurbineData.turbineMinSpeed = 0
+    workers()
+    revealTabs()
+    useTelescope()
+    gatherMaterials()
+    MiscellaneousData.gameTicks += 1
 }, 250)
