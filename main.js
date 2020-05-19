@@ -89,38 +89,47 @@ var SerchAreaData = {
 
 var AlphaData = {
     alphaLocation: Math.random() * 1000,
+    powerLaserLevel: 0,
 }
 
 var BataData = {
     bataLocation: Math.random() * 1000,
+    reaserchLabLevel: 0,
 }
 
 var GammaData = {
     gammaLocation: Math.random() * 1000,
+    warpArrayGamma: 0,
 }
 
 var DeltaData = {
     deltaLocation: Math.random() * 10000,
+    observatoryLevel: 0,
 }
 
 var EpsilonData = {
     epsilonLocation: Math.random() * 10000,
+    solarSatelliteFactoryLevel: 0,
 }
 
 var ZetaData = {
     zetaLocation: Math.random() * 10000,
+    warpArrayZeat: 0,
 }
 
 var EtaData = {
     etaLocation: Math.random() * 100000,
+    matterSynthesizerLevel: 0,
 }
 
 var TheataData = {
     theataLocation: Math.random() * 100000,
+    cloningVatLevel: 0,
 }
 
 var IotaData = {
     iotaLocation: Math.random() * 100000,
+    warpArrayIota: 0,
 }
 
 var WorkerStatusData = {
@@ -436,34 +445,34 @@ function workers() {
         JobTimeData.steelJobTimeCurrent -= JobData.steelWorker * JobEfficiencyData.steelWorkerEfficiency
         JobTimeData.oilJobTimeCurrent -= JobData.oilWorker * JobEfficiencyData.oilWorkerEfficiency
         JobTimeData.plasticJobTimeCurrent -= JobData.plasticWorker * JobEfficiencyData.plasticWorkerEfficiency
-    }
-    if (JobTimeData.energyJobTimeCurrent <= 0) {
-        JobTimeData.energyJobTimeCurrent = JobTimeData.energyJobTime
-        spinTurbine(JobProductionData.energyJobProduction)
-    } else if (JobTimeData.woodJobTimeCurrent <= 0) {
-        JobTimeData.woodJobTimeCurrent = JobTimeData.woodJobTime
-        StockpillData.wood += JobProductionData.woodJobProduction
-    } else if (JobTimeData.sandJobTimeCurrent <= 0) {
-        JobTimeData.sandJobTimeCurrent = JobTimeData.sandJobTime
-        StockpillData.sand += JobProductionData.sandJobProduction
-    } else if (JobTimeData.glassJobTimeCurrent <= 0) {
-        JobTimeData.glassJobTimeCurrent = JobTimeData.glassJobTime
-        StockpillData.glass += JobProductionData.glassJobProduction
-    } else if (JobTimeData.ironJobTimeCurrent <= 0) {
-        JobTimeData.ironJobTimeCurrent = JobTimeData.ironJobTime
-        StockpillData.iron += JobProductionData.ironJobProduction
-    } else if (JobTimeData.coalJobTimeCurrent <= 0) {
-        JobTimeData.coalJobTimeCurrent = JobTimeData.coalJobTime
-        StockpillData.coal += JobProductionData.coalJobProduction
-    } else if (JobTimeData.steelJobTimeCurrent <= 0) {
-        JobTimeData.steelJobTimeCurrent = JobTimeData.steelJobTime
-        StockpillData.steel += JobProductionData.steelJobProduction
-    } else if (JobTimeData.oilJobTimeCurrent <= 0) {
-        JobTimeData.oilJobTimeCurrent = JobTimeData.oilJobTime
-        StockpillData.oil += JobProductionData.oilJobProduction
-    } else if (JobTimeData.plasticJobTimeCurrent <= 0) {
-        JobTimeData.plasticJobTimeCurrent = JobTimeData.plasticJobTime
-        StockpillData.plastic += JobProductionData.plasticJobProduction
+        if (JobTimeData.energyJobTimeCurrent <= 0) {
+            JobTimeData.energyJobTimeCurrent = JobTimeData.energyJobTime
+            spinTurbine(JobProductionData.energyJobProduction)
+        } else if (JobTimeData.woodJobTimeCurrent <= 0) {
+            JobTimeData.woodJobTimeCurrent = JobTimeData.woodJobTime
+            StockpillData.wood += JobProductionData.woodJobProduction
+        } else if (JobTimeData.sandJobTimeCurrent <= 0) {
+            JobTimeData.sandJobTimeCurrent = JobTimeData.sandJobTime
+            StockpillData.sand += JobProductionData.sandJobProduction
+        } else if (JobTimeData.glassJobTimeCurrent <= 0) {
+            JobTimeData.glassJobTimeCurrent = JobTimeData.glassJobTime
+            StockpillData.glass += JobProductionData.glassJobProduction
+        } else if (JobTimeData.ironJobTimeCurrent <= 0) {
+            JobTimeData.ironJobTimeCurrent = JobTimeData.ironJobTime
+            StockpillData.iron += JobProductionData.ironJobProduction
+        } else if (JobTimeData.coalJobTimeCurrent <= 0) {
+            JobTimeData.coalJobTimeCurrent = JobTimeData.coalJobTime
+            StockpillData.coal += JobProductionData.coalJobProduction
+        } else if (JobTimeData.steelJobTimeCurrent <= 0) {
+            JobTimeData.steelJobTimeCurrent = JobTimeData.steelJobTime
+            StockpillData.steel += JobProductionData.steelJobProduction
+        } else if (JobTimeData.oilJobTimeCurrent <= 0) {
+            JobTimeData.oilJobTimeCurrent = JobTimeData.oilJobTime
+            StockpillData.oil += JobProductionData.oilJobProduction
+        } else if (JobTimeData.plasticJobTimeCurrent <= 0) {
+            JobTimeData.plasticJobTimeCurrent = JobTimeData.plasticJobTime
+            StockpillData.plastic += JobProductionData.plasticJobProduction
+        }
     }
 }
 
@@ -692,15 +701,15 @@ function serchSpace(area) {
   if (area == 1 && SerchAreaData.area1Clear == 0){
     SerchAreaData.freeSpaceArea1 -= TelescopeData.areaSerchSpeed
     if (SerchAreaData.freeSpaceArea1 < AlphaData.alphaLocation){
-        AlphaData.alphaLocation = 0
+        AlphaData.alphaLocation = -1
       document.getElementById("planet_alpha").style.display = "block"
     }
     else if (SerchAreaData.freeSpaceArea1 < BataData.bataLocation){
-      BataData.bataLocation = 0
+      BataData.bataLocation = -1
       document.getElementById("planet_bata").style.display = "block"
     }
     else if (SerchAreaData.freeSpaceArea1 < GammaData.gammaLocation){
-        GammaData.gammaLocation = 0
+        GammaData.gammaLocation = -1
       document.getElementById("planet_gamma").style.display = "block"
     }
     //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 0LY to 1LY (" + formatNumber(100 - spaceData.freeSpaceArea1/10) + "% compleat)"
@@ -717,15 +726,15 @@ function serchSpace(area) {
   else if (area == 2 && SerchAreaData.area2Clear == 0){
     SerchAreaData.freeSpaceArea2 -= TelescopeData.areaSerchSpeed
     if (SerchAreaData.freeSpaceArea2 < DeltaData.deltaLocation){
-      DeltaData.deltaLocation = 0
+      DeltaData.deltaLocation = -1
       document.getElementById("planet_delta").style.display = "block"
     }
     else if (SerchAreaData.freeSpaceArea2 < EpsilonData.epsilonLocation){
-        EpsilonData.epsilonLocation = 0
+        EpsilonData.epsilonLocation = -1
       document.getElementById("planet_epsilon").style.display = "block"
     }
     else if (SerchAreaData.freeSpaceArea2 < ZetaData.zetaLocation){
-        ZetaData.zetaLocation = 0
+        ZetaData.zetaLocation = -1
       document.getElementById("planet_zeta").style.display = "block"
     }
     //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 1LY to 10LY (" + formatNumber(100 - spaceData.freeSpaceArea2/100) + "% compleat)"
@@ -742,15 +751,15 @@ function serchSpace(area) {
   else if (area == 3 && SerchAreaData.area3Clear == 0){
     SerchAreaData.freeSpaceArea3 -= TelescopeData.areaSerchSpeed
     if (SerchAreaData.freeSpaceArea3 < EtaData.etaLocation){
-      EtaData.etaLocation = 0
+      EtaData.etaLocation = -1
       document.getElementById("planet_eta").style.display = "block"
     }
     else if (SerchAreaData.freeSpaceArea3 < TheataData.TheataLocation){
-      TheataData.TheataLocation = 0
+      TheataData.TheataLocation = -1
       document.getElementById("planet_theata").style.display = "block"
     }
     else if (SerchAreaData.freeSpaceArea3 < IotaData.iotaLocation){
-      IotaData.iotaLocation = 0
+      IotaData.iotaLocation = -1
       document.getElementById("planet_iota").style.display = "block"
     }
     //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 10LY to 100LY (" + formatNumber(100 - spaceData.freeSpaceArea3/1000) + "% compleat)"
@@ -800,6 +809,36 @@ let setUpToolTip = function() {
 
 setUpToolTip()
 
+function planetProduction() {
+    if (AlphaData.alphaLocation == -1) {
+        Pass
+    }
+    if (BataData.bataLocation == -1) {
+        Pass
+    }
+    if (GammaData.gammaLocation == -1) {
+        Pass
+    }
+    if (DeltaData.deltaLocation == -1) {
+        Pass
+    }
+    if (EpsilonData.epsilonLocation == -1) {
+        Pass
+    }
+    if (ZetaData.zetaLocation == -1) {
+        Pass
+    }
+    if (EtaData.etaLocation == -1) {
+        Pass
+    }
+    if (TheataData.theataLocation == -1) {
+        Pass
+    }
+    if (IotaData.iotaLocation == -1) {
+        Pass
+    }
+}
+
 var mainGameLoop = window.setInterval(function() {
     slowTurbine()
     makePower(TurbineData.generatorEfficency * ((TurbineData.turbineSpeed + TurbineData.turbineMinSpeed) / 1000))
@@ -808,5 +847,6 @@ var mainGameLoop = window.setInterval(function() {
     revealTabs()
     useTelescope()
     gatherMaterials()
+    planetProduction()
     MiscellaneousData.gameTicks += 1
 }, MiscellaneousData.gameSpeed)
