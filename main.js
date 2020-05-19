@@ -123,13 +123,13 @@ var IotaData = {
 }
 
 var WorkerStatusData = {
-    workers: 0,
+    workers: 1,
     freeWorkers: 0,
     workerCost: 10000,
 }
 
 var JobData = {
-    energyWorker: 0,
+    energyWorker: 1,
     woodWorker: 0,
     sandWorker: 0,
     glassWorker: 0,
