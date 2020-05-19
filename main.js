@@ -704,6 +704,18 @@ function serchSpace(area) {
   }
 }
 
+function gatherMaterials() {
+    StockpillData.sand += BuildingData.diggers * BuildingEfficiencyData.diggerEfficiency
+    //document.getElementById("sandDisplay").innerHTML = "sand: " + formatNumber(gameData.sand)
+    StockpillData.iron += BuildingData.mines * BuildingEfficiencyData.mineEfficiency
+    //document.getElementById("ironDisplay").innerHTML = "iron: " + formatNumber(gameData.iron)
+    StockpillData.coal += BuildingData.drils * BuildingEfficiencyData.drilEfficiency
+    //document.getElementById("coalDisplay").innerHTML = "coal: " + formatNumber(gameData.coal)
+    StockpillData.oil += BuildingData.pumps * BuildingEfficiencyData.pumpEfficiency
+    //document.getElementById("oilDisplay").innerHTML = "oil: " + formatNumber(gameData.oil)
+    updateText("Materials")
+}
+
 var mainGameLoop = window.setInterval(function() {
     slowTurbine()
     makePower(TurbineData.generatorEfficency * ((TurbineData.turbineSpeed + TurbineData.turbineMinSpeed) / 1000))
