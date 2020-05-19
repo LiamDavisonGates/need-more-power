@@ -6,17 +6,22 @@
     <script src="main.js" charset="utf-8" type="text/javascript"></script>
     <title>Need More POWER!</title>
   </head>
+  <style>
+    body {
+      background-image: url('isis-franca-hsPFuudRg5I-unsplash.jpg');
+    }
+  </style>
   <body>
     <div class="w3-container">
-      <h1 data-tooltip="hi" class="hover-reveal">Turbine</h1>
+      <h1 style="color:red" data-tooltip="hi" class="hover-reveal">Turbine</h1>
       <div>
       <button data-tooltip="spin me" class="hover-reveal" onclick="spinTurbine()">Spin Turbine</button>
       </div>
       <div class="RPM">
-          <h2 id=RPM >0.00 RPM</h2>
-          <span class="toolTipText" id="RPMTipText">W per sec: 0</span>
+          <h2 style="color:red" id=RPM >0.00 RPM</h2>
+          <span style="color:red" class="toolTipText" id="RPMTipText">W per sec: 0</span>
       </div>
-      <p id=currentPower >Stored power: 0.00W/100.00W</p>
+      <p style="color:red" id=currentPower >Stored power: 0.00W/100.00W</p>
     </div>
 
     <style>
@@ -27,7 +32,7 @@
         .RPM .toolTipText {
             visibility: hidden;
             width: 120px;
-            background-color: black;
+            background-color: blue;
             color: #fff;
             text-align: center;
             border-radius: 6px;
