@@ -69,6 +69,7 @@ function buyWorker() {
         WorkerStatusData.workerCost *= 1.5
         updateText("Workers")
         document.getElementById("energyWorkers").style.display = "block"
+        document.getElementById("energyWorkers").style.color = "Azure"
         document.getElementById("energyWorkers+").style.display = "block"
         document.getElementById("energyWorkers-").style.display = "block"
     }
