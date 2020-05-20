@@ -70,6 +70,7 @@ function buyTelescope () {
     document.getElementById("turnTelescope_On_Off").style.display = "block"
     document.getElementById("changeSpaceArea").style.display = "block"
     document.getElementById("exploration").style.display = "block"
+    document.getElementById("exploration").style.color = "Azure"
     updateText("Space")
     //document.getElementById("currentPower").innerHTML = 'Stored power: ' + formatNumber(gameData.currentPower) + "W/" + formatNumber(gameData.totalPowerStorage) + "W"
     //document.getElementById("buyTelescopeButton").innerHTML = "Upgrade telescope (Currently Level " + spaceData.telescopeLevel + ") Cost: " + formatNumber(spaceData.telescopeCost) + "W"
