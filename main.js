@@ -644,7 +644,7 @@ function buyTelescope () {
     TelescopeData.telescopeLevel += 1
     TelescopeData.currentPower -= TelescopeData.telescopeCost
     TelescopeData.telescopeCost *= 1000
-    TelescopeData.spaceSerchSpeed += 1
+    TelescopeData.areaSerchSpeed += 1
     document.getElementById("turnTelescope_On_Off").style.display = "block"
     document.getElementById("changeSpaceArea").style.display = "block"
     document.getElementById("exploration").style.display = "block"
