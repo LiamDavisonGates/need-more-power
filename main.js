@@ -74,7 +74,7 @@ var TelescopeData = {
     telescopeCost: 100,
     telescopeStatus: "Off",
     telescopeEnergyCost: 0,
-    Area: 1,
+    area: 1,
     areaSerchSpeed: 0,
 }
 
@@ -133,21 +133,21 @@ var IotaData = {
 }
 
 var WorkerStatusData = {
-    workers: 0,
+    workers: 9,
     freeWorkers: 0,
     workerCost: 10000,
 }
 
 var JobData = {
-    energyWorker: 0,
-    woodWorker: 0,
-    sandWorker: 0,
-    glassWorker: 0,
-    ironWorker: 0,
-    coalWorker: 0,
-    steelWorker: 0,
-    oilWorker: 0,
-    plasticWorker: 0,
+    energyWorker: 1,
+    woodWorker: 1,
+    sandWorker: 1,
+    glassWorker: 1,
+    ironWorker: 1,
+    coalWorker: 1,
+    steelWorker: 1,
+    oilWorker: 1,
+    plasticWorker: 1,
 }
 
 var JobEfficiencyData = {
@@ -568,11 +568,11 @@ function updateText(update) {
     } else if (update == "Space") {
         document.getElementById("buyTelescopeButton").innerHTML = "Upgrade telescope (Currently Level " + TelescopeData.telescopeLevel + ") Cost: " + formatNumber(TelescopeData.telescopeCost) + "W"
         document.getElementById("turnTelescope_On_Off").innerHTML = "Telescope " + TelescopeData.telescopeOn + " (energy cost " + TelescopeData.telescopeEnergyCost * 4 + "W/s)"
-        if (spaceData.area == 1) {
+        if (TelescopeData.area == 1) {
             document.getElementById("changeSpaceArea").innerHTML = "Looking out at 0LY to 1LY (" + formatNumber(100 - SerchAreaData.freeSpaceArea1 / 10) + "% compleat)"
-        } else if (spaceData.area == 2) {
+        } else if (TelescopeData.area == 2) {
             document.getElementById("changeSpaceArea").innerHTML = "Looking out at 1LY to 10LY (" + formatNumber(100 - SerchAreaData.freeSpaceArea2 / 100) + "% compleat)"
-        } else if (spaceData.area == 3) {
+        } else if (TelescopeData.area == 3) {
             document.getElementById("changeSpaceArea").innerHTML = "Looking out at 10LY to 100LY (" + formatNumber(100 - SerchAreaData.freeSpaceArea3 / 1000) + "% compleat)"
         }
     } else if (update == "Workers") {
