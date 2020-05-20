@@ -3,12 +3,6 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src="main.js" charset="utf-8" type="text/javascript"></script>
-    <script src="js/upgrades.js" charset="utf-8" type="text/javascript"></script>
-    <script src="js/materials.js" charset="utf-8" type="text/javascript"></script>
-    <script src="js/biuldings.js" charset="utf-8" type="text/javascript"></script>
-    <script src="js/space.js" charset="utf-8" type="text/javascript"></script>
-    <script src="js/workers.js" charset="utf-8" type="text/javascript"></script>
     <title>Need More POWER!</title>
   </head>
   <style>
@@ -28,6 +22,8 @@
       </div>
       <p style="color:Azure" id=currentPower >Stored power: 0.00W/100.00W</p>
     </div>
+
+    <canvas id="myChart" width="400" height="400"></canvas>
 
     <div class="w3-bar w3-black">
       <button class="w3-bar-item w3-button tablink" id="upgradesTab" onclick="openCity(event,'Upgrades')" style="display:none" >Upgrades</button>
@@ -167,6 +163,14 @@
       <button onclick="stopWorkerJob('plastic', 1)" id="plasticWorkers-"style="display:none">-</button>
       </div>
     </div>
+
+    <script src="js/Chart.bundle.js" charset="utf-8" type="text/javascript"></script>
+    <script src="js/upgrades.js" charset="utf-8" type="text/javascript"></script>
+    <script src="js/materials.js" charset="utf-8" type="text/javascript"></script>
+    <script src="js/biuldings.js" charset="utf-8" type="text/javascript"></script>
+    <script src="js/space.js" charset="utf-8" type="text/javascript"></script>
+    <script src="js/workers.js" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js" charset="utf-8" type="text/javascript"></script>
 
     <style>
         .RPM {
