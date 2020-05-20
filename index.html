@@ -24,6 +24,145 @@
       <p style="color:red" id=currentPower >Stored power: 0.00W/100.00W</p>
     </div>
 
+    <div class="w3-bar w3-black">
+      <button class="w3-bar-item w3-button tablink" id="upgradesTab" onclick="openCity(event,'Upgrades')" style="display:none" >Upgrades</button>
+      <button class="w3-bar-item w3-button tablink" id="materialsTab" onclick="openCity(event,'Materials')" style="display:none" >Material</button>
+      <button class="w3-bar-item w3-button tablink" id="BuildingsTab" onclick="openCity(event,'Buildings')" style="display:none" >Buildings</button>
+      <button class="w3-bar-item w3-button tablink" id="spaceTab" onclick="openCity(event,'Space')" style="display:none" >Space</button>
+      <button class="w3-bar-item w3-button tablink" id="WorkersTab" onclick="openCity(event,'Workers')" style="display:none" >Workers</button>
+    </div>
+
+    <div id="Buildings" class="city w3-container" style="display:none">
+      <h2>Buildings</h2>
+      <button onclick="buyDigger()" id="getDigger" style="display:none" >Buy digger (Currently Ownd 0) Cost: 50 Wood</button>
+      <button onclick="buyMine()" id="getMine" style="display:none" >Buy mine (Currently Ownd 0) Cost: 100 Wood</button>
+      <button onclick="buyDril()" id="getDril" style="display:none" >Buy dril (Currently Ownd 0) Cost: 100 Iron</button>
+      <button onclick="buyPump()" id="getPump" style="display:none" >Buy pump (Currently Ownd 0) Cost: 100 Steel</button>
+    </div>
+
+    <div id="Upgrades" class="city w3-container" style="display:none">
+      <h2>Upgrades</h2>
+      <div>
+      <button onclick="buyPowerPerTick()" id="perClickUpgrade">Upgrade Turbine (Currently Level 1) Cost: 10.00W</button>
+      </div>
+      <div>
+      <button onclick="buyCapasitor()" id="buyCapasitorButton">Buy Capasitor (Currently Ownd 1) Cost: 20.00W</button>
+      </div>
+      <div>
+      <button onclick="buyBattery()" id="buyBatteryButton">Buy Battery (Currently Ownd 0) Cost: 500.00W</button>
+      </div>
+    </div>
+
+    <div id="Materials" class="city w3-container" style="display:none">
+      <h2>Materials</h2>
+      <h5 id="woodDisplay" style="display:none" >wood: 0</h5>
+      <h5 id="sandDisplay" style="display:none" >sand: 0</h5>
+      <h5 id="ironDisplay" style="display:none" >iron: 0</h5>
+      <h5 id="coalDisplay" style="display:none" >coal: 0</h5>
+      <h5 id="steelDisplay" style="display:none" >steel: 0</h5>
+      <h5 id="glassDisplay" style="display:none" >glass: 0</h5>
+      <h5 id="oilDisplay" style="display:none" >oil: 0</h5>
+      <h5 id="plasticDisplay" style="display:none" >plastic: 0</h5>
+      <h2>Crafting</h2>
+      <div>
+      <button onclick="chopWood(1)" id="getWood">Chop wood Cost: 1W</button>
+      <button onclick="chopWood(10)" id="getWoodX10">X10</button>
+      <button onclick="chopWood(100)" id="getWoodX10">X100</button>
+      </div>
+      <div>
+      <button onclick="makeSteel(1)" id="getSteel">Make steel Cost: 10 Coal & 100 Iron</button>
+      <button onclick="makeSteel(10)" id="getSteelX10">X10</button>
+      <button onclick="makeSteel(100)" id="getSteelX100">X100</button>
+      </div>
+      <div>
+      <button onclick="makeGlass(1)" id="getGlass">Make glass Cost: 10 Sand</button>
+      <button onclick="makeGlass(10)" id="getGlassX10">X10</button>
+      <button onclick="makeGlass(100)" id="getGlassX100">X100</button>
+      </div>
+      <div>
+      <button onclick="makePlastic(1)" id="getPlastic">Make plastic Cost: 10 Oil</button>
+      <button onclick="makePlastic(10)" id="getPlasticX10">X10</button>
+      <button onclick="makePlastic(100)" id="getPlasticX100">X100</button>
+      </div>
+    </div>
+
+    <div id="Space" class="city w3-container" style="display:none">
+      <h2>Buildings</h2>
+      <div>
+      <button onclick="buyTelescope()" id="buyTelescopeButton">Buy telescope Cost: 100.00W</button>
+      </div>
+      <h2 id="exploration" style="display:none">Exploration</h2>
+      <div>
+      <button onclick="turnTelescopeOn_Off()" id="turnTelescope_On_Off" style="display:none">Telescope Off (energy cost 0W/s)</button>
+      </div>
+      <div>
+      <button onclick="selectSpaceArer()" id="changeSpaceArea" style="display:none">Looking out at 0LY to 1LY (0% compleat)</button>
+      </div>
+      <h2 id="planet_alpha" style="display:none">Planet Alpha</h2>
+      <h2 id="planet_bata" style="display:none">Planet Bata</h2>
+      <h2 id="planet_gamma" style="display:none">Planet Gamma</h2>
+      <h2 id="planet_delta" style="display:none">Planet Delta</h2>
+      <h2 id="planet_epsilon" style="display:none">Planet Epsilon</h2>
+      <h2 id="planet_zeta" style="display:none">Planet Zeta</h2>
+      <h2 id="planet_eta" style="display:none">Planet Eta</h2>
+      <h2 id="planet_theata" style="display:none">Planet Theata</h2>
+      <h2 id="planet_iota" style="display:none">Planet Iota</h2>
+    </div>
+
+    <div id="Workers" class="city w3-container" style="display:none">
+      <h2>Workers</h2>
+      <div>
+      <button onclick="buyWorker()" id="buyWorker">Buy worker Cost: 10000.00W</button>
+      </div>
+      <h2 id="Jobs">Jobs</h2>
+      <h5 id="freeWorkers">Free workers 0</h5>
+      <div>
+      <h5 id="energyWorkers"style="display:none">Energy workers</h5>
+      <button onclick="setWorkerJob('energy', 1)" id="energyWorkers+"style="display:none">+</button>
+      <button onclick="stopWorkerJob('energy', 1)" id="energyWorkers-"style="display:none">-</button>
+      </div>
+      <div>
+      <h5 id="woodWorkers"style="display:none">Wood workers</h5>
+      <button onclick="setWorkerJob('wood', 1)" id="woodWorkers+"style="display:none">+</button>
+      <button onclick="stopWorkerJob('wood', 1)" id="woodWorkers-"style="display:none">-</button>
+      </div>
+      <div>
+      <h5 id="sandWorkers"style="display:none">Sand workers</h5>
+      <button onclick="setWorkerJob('sand', 1)" id="sandWorkers+"style="display:none">+</button>
+      <button onclick="stopWorkerJob('sand', 1)" id="sandWorkers-"style="display:none">-</button>
+      </div>
+      <div>
+      <h5 id="glassWorkers"style="display:none">Glass workers</h5>
+      <button onclick="setWorkerJob('glass', 1)" id="glassWorkers+"style="display:none">+</button>
+      <button onclick="stopWorkerJob('glass', 1)" id="glassWorkers-"style="display:none">-</button>
+      </div>
+      <div>
+      <h5 id="ironWorkers"style="display:none">Iron workers</h5>
+      <button onclick="setWorkerJob('iron', 1)" id="ironWorkers+"style="display:none">+</button>
+      <button onclick="stopWorkerJob('iron', 1)" id="ironWorkers-"style="display:none">-</button>
+      </div>
+      <div>
+      <h5 id="coalWorkers"style="display:none">Coal workers</h5>
+      <button onclick="setWorkerJob('coal', 1)" id="coalWorkers+"style="display:none">+</button>
+      <button onclick="stopWorkerJob('coal', 1)" id="coalWorkers-"style="display:none">-</button>
+      </div>
+      <div>
+      <h5 id="steelWorkers"style="display:none">Steel workers</h5>
+      <button onclick="setWorkerJob('steel', 1)" id="steelWorkers+"style="display:none">+</button>
+      <button onclick="stopWorkerJob('steel', 1)" id="steelWorkers-"style="display:none">-</button>
+      </div>
+      <div>
+      <h5 id="oilWorkers"style="display:none">Oil workers</h5>
+      <button onclick="setWorkerJob('oil', 1)" id="oilWorkers+"style="display:none">+</button>
+      <button onclick="stopWorkerJob('oil', 1)" id="oilWorkers-"style="display:none">-</button>
+      </div>
+      <div>
+      <h5 id="plasticWorkers"style="display:none">Plastic workers</h5>
+      <button onclick="setWorkerJob('plastic', 1)" id="plasticWorkers+"style="display:none">+</button>
+      <button onclick="stopWorkerJob('plastic', 1)" id="plasticWorkers-"style="display:none">-</button>
+      </div>
+    </div>
+    
     <style>
         .RPM {
             position: relative;
@@ -69,6 +208,24 @@
             z-index: 99999;
         }
     </style>
+    
+    <div class="div-tooltip"></div>
+
+    <script>
+      function openCity(evt, cityName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("city");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" w3-grey", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " w3-grey";
+      }
+    </script>
 
   </body>
 </html>
