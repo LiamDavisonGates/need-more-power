@@ -494,51 +494,83 @@ function revealTabs() {
     }
     if (StockpillData.wood > 0) {
         document.getElementById("woodDisplay").style.display = "block"
+        document.getElementById("woodDisplay").style.color = "Azure"
         document.getElementById("woodWorkers").style.display = "block"
+        document.getElementById("woodWorkers").style.color = "Azure"
         document.getElementById("woodWorkers+").style.display = "block"
+        document.getElementById("woodWorkers+").style.color = "Azure"
         document.getElementById("woodWorkers-").style.display = "block"
+        document.getElementById("woodWorkers-").style.color = "Azure"
     }
     if (StockpillData.sand > 0) {
         document.getElementById("sandDisplay").style.display = "block"
+        document.getElementById("sandDisplay").style.color = "Azure"
         document.getElementById("sandWorkers").style.display = "block"
+        document.getElementById("sandWorkers").style.color = "Azure"
         document.getElementById("sandWorkers+").style.display = "block"
+        document.getElementById("sandWorkers+").style.color = "Azure"
         document.getElementById("sandWorkers-").style.display = "block"
+        document.getElementById("sandWorkers-").style.color = "Azure"
     }
     if (StockpillData.iron > 0) {
         document.getElementById("ironDisplay").style.display = "block"
+        document.getElementById("ironDisplay").style.color = "Azure"
         document.getElementById("ironWorkers").style.display = "block"
+        document.getElementById("ironWorkers").style.color = "Azure"
         document.getElementById("ironWorkers+").style.display = "block"
+        document.getElementById("ironWorkers+").style.color = "Azure"
         document.getElementById("ironWorkers-").style.display = "block"
+        document.getElementById("ironWorkers-").style.color = "Azure"
     }
     if (StockpillData.coal > 0) {
         document.getElementById("coalDisplay").style.display = "block"
+        document.getElementById("coalDisplay").style.color = "Azure"
         document.getElementById("coalWorkers").style.display = "block"
+        document.getElementById("coalWorkers").style.color = "Azure"
         document.getElementById("coalWorkers+").style.display = "block"
+        document.getElementById("coalWorkers+").style.color = "Azure"
         document.getElementById("coalWorkers-").style.display = "block"
+        document.getElementById("coalWorkers-").style.color = "Azure"
     }
     if (StockpillData.oil > 0) {
         document.getElementById("oilDisplay").style.display = "block"
+        document.getElementById("oilDisplay").style.color = "Azure"
         document.getElementById("oilWorkers").style.display = "block"
+        document.getElementById("oilWorkers").style.color = "Azure"
         document.getElementById("oilWorkers+").style.display = "block"
+        document.getElementById("oilWorkers+").style.color = "Azure"
         document.getElementById("oilWorkers-").style.display = "block"
+        document.getElementById("oilWorkers-").style.color = "Azure"
     }
     if (StockpillData.plastic > 0) {
         document.getElementById("plasticDisplay").style.display = "block"
+        document.getElementById("plasticDisplay").style.color = "Azure"
         document.getElementById("plasticWorkers").style.display = "block"
+        document.getElementById("plasticWorkers").style.color = "Azure"
         document.getElementById("plasticWorkers+").style.display = "block"
+        document.getElementById("plasticWorkers+").style.color = "Azure"
         document.getElementById("plasticWorkers-").style.display = "block"
+        document.getElementById("plasticWorkers-").style.color = "Azure"
     }
     if (StockpillData.glass > 0) {
         document.getElementById("glassDisplay").style.display = "block"
+        document.getElementById("glassDisplay").style.color = "Azure"
         document.getElementById("glassWorkers").style.display = "block"
+        document.getElementById("glassWorkers").style.color = "Azure"
         document.getElementById("glassWorkers+").style.display = "block"
+        document.getElementById("glassWorkers+").style.color = "Azure"
         document.getElementById("glassWorkers-").style.display = "block"
+        document.getElementById("glassWorkers-").style.color = "Azure"
     }
     if (StockpillData.steel > 0) {
         document.getElementById("steelDisplay").style.display = "block"
+        document.getElementById("steelDisplay").style.color = "Azure"
         document.getElementById("steelWorkers").style.display = "block"
+        document.getElementById("steelWorkers").style.color = "Azure"
         document.getElementById("steelWorkers+").style.display = "block"
+        document.getElementById("steelWorkers+").style.color = "Azure"
         document.getElementById("steelWorkers-").style.display = "block"
+        document.getElementById("steelWorkers-").style.color = "Azure"
     }
 }
 
