@@ -13,15 +13,15 @@
   </style>
   <body>
     <div class="w3-container">
-      <h1 style="color:red" data-tooltip="hi" class="hover-reveal">Turbine</h1>
+      <h1 style="color:Azure" data-tooltip="hi" class="hover-reveal">Turbine</h1>
       <div>
       <button data-tooltip="spin me" class="hover-reveal" onclick="spinTurbine()">Spin Turbine</button>
       </div>
       <div class="RPM">
-          <h2 style="color:red" id=RPM >0.00 RPM</h2>
-          <span style="color:red" class="toolTipText" id="RPMTipText">W per sec: 0</span>
+          <h2 style="color:Azure" id=RPM >0.00 RPM</h2>
+          <span style="color:Azure" class="toolTipText" id="RPMTipText">W per sec: 0</span>
       </div>
-      <p style="color:red" id=currentPower >Stored power: 0.00W/100.00W</p>
+      <p style="color:Azure" id=currentPower >Stored power: 0.00W/100.00W</p>
     </div>
 
     <div class="w3-bar w3-black">
@@ -33,7 +33,7 @@
     </div>
 
     <div id="Buildings" class="city w3-container" style="display:none">
-      <h2>Buildings</h2>
+      <h2 style="color:Azure">Buildings</h2>
       <button onclick="buyDigger()" id="getDigger" style="display:none" >Buy digger (Currently Ownd 0) Cost: 50 Wood</button>
       <button onclick="buyMine()" id="getMine" style="display:none" >Buy mine (Currently Ownd 0) Cost: 100 Wood</button>
       <button onclick="buyDril()" id="getDril" style="display:none" >Buy dril (Currently Ownd 0) Cost: 100 Iron</button>
@@ -41,7 +41,7 @@
     </div>
 
     <div id="Upgrades" class="city w3-container" style="display:none">
-      <h2>Upgrades</h2>
+      <h2 style="color:Azure">Upgrades</h2>
       <div>
       <button onclick="buyPowerPerTick()" id="perClickUpgrade">Upgrade Turbine (Currently Level 1) Cost: 10.00W</button>
       </div>
@@ -54,7 +54,7 @@
     </div>
 
     <div id="Materials" class="city w3-container" style="display:none">
-      <h2>Materials</h2>
+      <h2 style="color:Azure">Materials</h2>
       <h5 id="woodDisplay" style="display:none" >wood: 0</h5>
       <h5 id="sandDisplay" style="display:none" >sand: 0</h5>
       <h5 id="ironDisplay" style="display:none" >iron: 0</h5>
@@ -63,7 +63,7 @@
       <h5 id="glassDisplay" style="display:none" >glass: 0</h5>
       <h5 id="oilDisplay" style="display:none" >oil: 0</h5>
       <h5 id="plasticDisplay" style="display:none" >plastic: 0</h5>
-      <h2>Crafting</h2>
+      <h2 style="color:Azure">Crafting</h2>
       <div>
       <button onclick="chopWood(1)" id="getWood">Chop wood Cost: 1W</button>
       <button onclick="chopWood(10)" id="getWoodX10">X10</button>
@@ -87,7 +87,7 @@
     </div>
 
     <div id="Space" class="city w3-container" style="display:none">
-      <h2>Buildings</h2>
+      <h2 style="color:Azure">Buildings</h2>
       <div>
       <button onclick="buyTelescope()" id="buyTelescopeButton">Buy telescope Cost: 100.00W</button>
       </div>
@@ -110,12 +110,12 @@
     </div>
 
     <div id="Workers" class="city w3-container" style="display:none">
-      <h2>Workers</h2>
+      <h2 style="color:Azure">Workers</h2>
       <div>
       <button onclick="buyWorker()" id="buyWorker">Buy worker Cost: 10000.00W</button>
       </div>
-      <h2 id="Jobs">Jobs</h2>
-      <h5 id="freeWorkers">Free workers 0</h5>
+      <h2 style="color:Azure" id="Jobs">Jobs</h2>
+      <h5 style="color:Azure" id="freeWorkers">Free workers 0</h5>
       <div>
       <h5 id="energyWorkers"style="display:none">Energy workers</h5>
       <button onclick="setWorkerJob('energy', 1)" id="energyWorkers+"style="display:none">+</button>
