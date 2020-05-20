@@ -125,14 +125,17 @@ function serchSpace(area) {
     if (SerchAreaData.freeSpaceArea1 < AlphaData.alphaLocation){
         AlphaData.alphaLocation = -1
       document.getElementById("planet_alpha").style.display = "block"
+      document.getElementById("planet_alpha").style.color = "Azure"
     }
     else if (SerchAreaData.freeSpaceArea1 < BataData.bataLocation){
       BataData.bataLocation = -1
       document.getElementById("planet_bata").style.display = "block"
+      document.getElementById("planet_bata").style.color = "Azure"
     }
     else if (SerchAreaData.freeSpaceArea1 < GammaData.gammaLocation){
         GammaData.gammaLocation = -1
       document.getElementById("planet_gamma").style.display = "block"
+      document.getElementById("planet_gamma").style.color = "Azure"
     }
     //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 0LY to 1LY (" + formatNumber(100 - spaceData.freeSpaceArea1/10) + "% compleat)"
     if (SerchAreaData.freeSpaceArea1 <= 0) {
@@ -150,14 +153,17 @@ function serchSpace(area) {
     if (SerchAreaData.freeSpaceArea2 < DeltaData.deltaLocation){
       DeltaData.deltaLocation = -1
       document.getElementById("planet_delta").style.display = "block"
+      document.getElementById("planet_delta").style.color = "Azure"
     }
     else if (SerchAreaData.freeSpaceArea2 < EpsilonData.epsilonLocation){
         EpsilonData.epsilonLocation = -1
       document.getElementById("planet_epsilon").style.display = "block"
+      document.getElementById("planet_epsilon").style.color = "Azure"
     }
     else if (SerchAreaData.freeSpaceArea2 < ZetaData.zetaLocation){
         ZetaData.zetaLocation = -1
       document.getElementById("planet_zeta").style.display = "block"
+      document.getElementById("planet_zeta").style.color = "Azure"
     }
     //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 1LY to 10LY (" + formatNumber(100 - spaceData.freeSpaceArea2/100) + "% compleat)"
     if (SerchAreaData.freeSpaceArea2 <= 0) {
@@ -175,14 +181,17 @@ function serchSpace(area) {
     if (SerchAreaData.freeSpaceArea3 < EtaData.etaLocation){
       EtaData.etaLocation = -1
       document.getElementById("planet_eta").style.display = "block"
+      document.getElementById("planet_eta").style.color = "Azure"
     }
     else if (SerchAreaData.freeSpaceArea3 < TheataData.TheataLocation){
       TheataData.TheataLocation = -1
       document.getElementById("planet_theata").style.display = "block"
+      document.getElementById("planet_theata").style.color = "Azure"
     }
     else if (SerchAreaData.freeSpaceArea3 < IotaData.iotaLocation){
       IotaData.iotaLocation = -1
       document.getElementById("planet_iota").style.display = "block"
+      document.getElementById("planet_iota").style.color = "Azure"
     }
     //document.getElementById("changeSpaceArea").innerHTML = "Looking out at 10LY to 100LY (" + formatNumber(100 - spaceData.freeSpaceArea3/1000) + "% compleat)"
     if (SerchAreaData.freeSpaceArea3 <= 0) {
