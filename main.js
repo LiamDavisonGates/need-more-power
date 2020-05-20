@@ -133,21 +133,21 @@ var IotaData = {
 }
 
 var WorkerStatusData = {
-    workers: 9,
+    workers: 0,
     freeWorkers: 0,
     workerCost: 10000,
 }
 
 var JobData = {
-    energyWorker: 1,
-    woodWorker: 1,
-    sandWorker: 1,
-    glassWorker: 1,
-    ironWorker: 1,
-    coalWorker: 1,
-    steelWorker: 1,
-    oilWorker: 1,
-    plasticWorker: 1,
+    energyWorker: 0,
+    woodWorker: 0,
+    sandWorker: 0,
+    glassWorker: 0,
+    ironWorker: 0,
+    coalWorker: 0,
+    steelWorker: 0,
+    oilWorker: 0,
+    plasticWorker: 0,
 }
 
 var JobEfficiencyData = {
