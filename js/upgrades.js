@@ -36,3 +36,11 @@ function buyPowerPerTick() {
         //document.getElementById("perClickUpgrade").innerHTML = "Upgrade Turbine (Currently Level " + gameData.powerPerTick + ") Cost: " + formatNumber(gameData.powerPerTickCost) + "W"
     }
 }
+
+function increasPowerPerTick(amount) {
+    PowerData.powerPerTick += amount
+}
+
+function updatePowerStorage() {
+    PowerStorageData.totalPowerStorage = (PowerStorageData.capasitors * PowerStorageData.capasitorsStorage) + (PowerStorageData.batteries * PowerStorageData.batteriesStorage)
+}
