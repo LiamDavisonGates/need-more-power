@@ -567,7 +567,7 @@ function updateText(update) {
         document.getElementById("woodDisplay").innerHTML = "wood: " + formatNumber(StockpillData.wood)
     } else if (update == "Space") {
         document.getElementById("buyTelescopeButton").innerHTML = "Upgrade telescope (Currently Level " + TelescopeData.telescopeLevel + ") Cost: " + formatNumber(TelescopeData.telescopeCost) + "W"
-        document.getElementById("turnTelescope_On_Off").innerHTML = "Telescope " + TelescopeData.telescopeOn + " (energy cost " + TelescopeData.telescopeEnergyCost * 4 + "W/s)"
+        document.getElementById("turnTelescope_On_Off").innerHTML = "Telescope " + TelescopeData.telescopeStatus + " (energy cost " + TelescopeData.telescopeEnergyCost * 4 + "W/s)"
         if (TelescopeData.area == 1) {
             document.getElementById("changeSpaceArea").innerHTML = "Looking out at 0LY to 1LY (" + formatNumber(100 - SerchAreaData.freeSpaceArea1 / 10) + "% compleat)"
         } else if (TelescopeData.area == 2) {
