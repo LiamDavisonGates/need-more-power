@@ -143,14 +143,6 @@ function makePower(amount) {
     updateText("Power")
 }
 
-function increasPowerPerTick(amount) {
-    PowerData.powerPerTick += amount
-}
-
-function updatePowerStorage() {
-    PowerStorageData.totalPowerStorage = (PowerStorageData.capasitors * PowerStorageData.capasitorsStorage) + (PowerStorageData.batteries * PowerStorageData.batteriesStorage)
-}
-
 function revealTabs() {
     if (PowerData.currentPower >= 5) {
         document.getElementById("upgradesTab").style.display = "block"
