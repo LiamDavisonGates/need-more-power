@@ -62,7 +62,7 @@ var JobProductionData = {
 }
 
 var JobProgressBarData = {
-    energyBarWidth: 0,
+    energyBarWidth: 0.00,
 }
 
 function buyWorker() {
