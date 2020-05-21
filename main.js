@@ -36,7 +36,7 @@ var MiscellaneousData = {
 }
 
 var data = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+  labels: ["0"],
   datasets: [{
     label: "Dataset #1",
     backgroundColor: "rgba(255,99,132,0.2)",
@@ -44,7 +44,7 @@ var data = {
     borderWidth: 2,
     hoverBackgroundColor: "rgba(255,99,132,0.4)",
     hoverBorderColor: "rgba(255,99,132,1)",
-    data: [65, 59, 20, 81, 56, 55, 40],
+    data: [0],
   }]
 };
 
@@ -66,10 +66,16 @@ var option = {
   }
 };
 
-Chart.Bar('myChart', {
+myLine = new Chart.Line('myChart', {
   options: option,
   data: data
 });
+
+function updateGraph() {
+  myLine.data.datasets[0].data.push(TurbineData.turbineSpeed)
+  myLine.data.labels.push(String(MiscellaneousData.gameTicks))
+  window.myLine.update();
+};
 
 function formatNumber(number) {
     if (number > 5000000000000000000) {
@@ -304,5 +310,6 @@ var mainGameLoop = window.setInterval(function() {
     useTelescope()
     gatherMaterials()
     planetProduction()
+    updateGraph()
     MiscellaneousData.gameTicks += 1
 }, MiscellaneousData.gameSpeed)
