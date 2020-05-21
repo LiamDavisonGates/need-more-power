@@ -152,9 +152,10 @@ function workers() {
             JobTimeData.energyJobTimeCurrent = JobTimeData.energyJobTime
             spinTurbine(JobProductionData.energyJobProduction)
             document.getElementById("energyWorkersBar").style.width = 0
+            JobProgressBarData.energyBarWidth = 0
         } else {
-            JobProgressBarData.energyBarWidth + JobData.energyWorker * JobEfficiencyData.energyWorkerEfficiency
-            document.getElementById("energyWorkersBar").style.width = JobProgressBarData.energyBarWidth / 10 + "%"
+            JobProgressBarData.energyBarWidth + ((JobData.energyWorker * JobEfficiencyData.energyWorkerEfficiency)/JobTimeData.energyJobTime)*100
+            document.getElementById("energyWorkersBar").style.width = JobProgressBarData.energyBarWidth + "%"
         }
         if (JobTimeData.woodJobTimeCurrent <= 0) {
             JobTimeData.woodJobTimeCurrent = JobTimeData.woodJobTime
