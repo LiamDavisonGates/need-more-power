@@ -154,7 +154,7 @@ function workers() {
             document.getElementById("energyWorkersBar").style.width = 0
             JobProgressBarData.energyBarWidth = 0
         } else {
-            JobProgressBarData.energyBarWidth + ((JobData.energyWorker * JobEfficiencyData.energyWorkerEfficiency)/JobTimeData.energyJobTime)*100
+            JobProgressBarData.energyBarWidth = ((JobData.energyWorker * JobEfficiencyData.energyWorkerEfficiency)/JobTimeData.energyJobTime)*100
             document.getElementById("energyWorkersBar").style.width = JobProgressBarData.energyBarWidth + "%"
         }
         if (JobTimeData.woodJobTimeCurrent <= 0) {
