@@ -61,6 +61,10 @@ var JobProductionData = {
     plasticJobProduction: 0.1,
 }
 
+var JobProgressBarData = {
+    energyBarWidth: 0,
+}
+
 function buyWorker() {
     if (PowerData.currentPower >= WorkerStatusData.workerCost) {
         WorkerStatusData.workers += 1
@@ -147,30 +151,43 @@ function workers() {
         if (JobTimeData.energyJobTimeCurrent <= 0) {
             JobTimeData.energyJobTimeCurrent = JobTimeData.energyJobTime
             spinTurbine(JobProductionData.energyJobProduction)
-        } else if (JobTimeData.woodJobTimeCurrent <= 0) {
+            document.getElementById("energyWorkersBar").style.width = 0
+        } else {
+            JobProgressBarData.energyBarWidth++
+            document.getElementById("energyWorkersBar").style.width = JobProgressBarData.energyBarWidth / 10 + "%"
+        }
+        if (JobTimeData.woodJobTimeCurrent <= 0) {
             JobTimeData.woodJobTimeCurrent = JobTimeData.woodJobTime
             StockpillData.wood += JobProductionData.woodJobProduction
-        } else if (JobTimeData.sandJobTimeCurrent <= 0) {
+        }
+        if (JobTimeData.sandJobTimeCurrent <= 0) {
             JobTimeData.sandJobTimeCurrent = JobTimeData.sandJobTime
             StockpillData.sand += JobProductionData.sandJobProduction
-        } else if (JobTimeData.glassJobTimeCurrent <= 0) {
+        }
+        if (JobTimeData.glassJobTimeCurrent <= 0) {
             JobTimeData.glassJobTimeCurrent = JobTimeData.glassJobTime
             StockpillData.glass += JobProductionData.glassJobProduction
-        } else if (JobTimeData.ironJobTimeCurrent <= 0) {
+        }
+        if (JobTimeData.ironJobTimeCurrent <= 0) {
             JobTimeData.ironJobTimeCurrent = JobTimeData.ironJobTime
             StockpillData.iron += JobProductionData.ironJobProduction
-        } else if (JobTimeData.coalJobTimeCurrent <= 0) {
+        }
+        if (JobTimeData.coalJobTimeCurrent <= 0) {
             JobTimeData.coalJobTimeCurrent = JobTimeData.coalJobTime
             StockpillData.coal += JobProductionData.coalJobProduction
-        } else if (JobTimeData.steelJobTimeCurrent <= 0) {
+        }
+        if (JobTimeData.steelJobTimeCurrent <= 0) {
             JobTimeData.steelJobTimeCurrent = JobTimeData.steelJobTime
             StockpillData.steel += JobProductionData.steelJobProduction
-        } else if (JobTimeData.oilJobTimeCurrent <= 0) {
+        }
+        if (JobTimeData.oilJobTimeCurrent <= 0) {
             JobTimeData.oilJobTimeCurrent = JobTimeData.oilJobTime
             StockpillData.oil += JobProductionData.oilJobProduction
-        } else if (JobTimeData.plasticJobTimeCurrent <= 0) {
+        }
+        if (JobTimeData.plasticJobTimeCurrent <= 0) {
             JobTimeData.plasticJobTimeCurrent = JobTimeData.plasticJobTime
             StockpillData.plastic += JobProductionData.plasticJobProduction
         }
+
     }
 }
