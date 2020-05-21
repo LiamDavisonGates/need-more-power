@@ -62,7 +62,7 @@ var JobProductionData = {
 }
 
 var JobProgressBarData = {
-    energyBarWidth: 0.00,
+    energyBarWidth: 0,
 }
 
 function buyWorker() {
@@ -154,7 +154,7 @@ function workers() {
             document.getElementById("energyWorkersBar").style.width = 0
             JobProgressBarData.energyBarWidth = 0
         } else {
-            JobProgressBarData.energyBarWidth = ((JobData.energyWorker * JobEfficiencyData.energyWorkerEfficiency)/JobTimeData.energyJobTime)*100
+            JobProgressBarData.energyBarWidth = 100-((JobTimeData.energyJobTimeCurrent/JobTimeData.energyJobTime)*100)
             document.getElementById("energyWorkersBar").style.width = JobProgressBarData.energyBarWidth + "%"
         }
         if (JobTimeData.woodJobTimeCurrent <= 0) {
