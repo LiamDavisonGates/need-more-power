@@ -151,7 +151,7 @@ function workers() {
         if (JobTimeData.energyJobTimeCurrent <= 0) {
             JobTimeData.energyJobTimeCurrent = JobTimeData.energyJobTime
             spinTurbine(JobProductionData.energyJobProduction)
-            document.getElementById("energyWorkersBar").style.width = 100
+            document.getElementById("energyWorkersBar").style.width = 0
             JobProgressBarData.energyBarWidth = 0
         } else {
             JobProgressBarData.energyBarWidth = 100-((JobTimeData.energyJobTimeCurrent/JobTimeData.energyJobTime)*100)
