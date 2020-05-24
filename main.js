@@ -301,6 +301,8 @@ let setUpToolTip = function() {
 
 setUpToolTip()
 
+var xy = document.getElementById('myItem1').ldBar
+
 var mainGameLoop = window.setInterval(function() {
     slowTurbine()
     makePower(TurbineData.generatorEfficency * ((TurbineData.turbineSpeed + TurbineData.turbineMinSpeed) / 1000))
