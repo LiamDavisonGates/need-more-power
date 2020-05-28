@@ -50,7 +50,7 @@ var JobTimeData = {
 }
 
 var JobProductionData = {
-    energyJobProduction: 100,
+    energyJobProduction: 10,
     woodJobProduction: 5,
     sandJobProduction: 5,
     glassJobProduction: 5,
@@ -158,7 +158,7 @@ function workers() {
             JobProgressBarData.energyBarWidth = 0
         } else {
             JobProgressBarData.energyBarWidth = 100-((JobTimeData.energyJobTimeCurrent/JobTimeData.energyJobTime)*100)
-            document.getElementById("energyWorkersBar").style.width = JobProgressBarData.energyBarWidth/10.87 + "%"
+            document.getElementById("energyWorkersBar").style.width = JobProgressBarData.energyBarWidth/11 + "%"
         }
         if (JobTimeData.woodJobTimeCurrent <= 0) {
             JobTimeData.woodJobTimeCurrent = JobTimeData.woodJobTime
