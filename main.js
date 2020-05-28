@@ -32,7 +32,7 @@ var TurbineData = {
 var MiscellaneousData = {
     numberFormat: 2,
     gameTicks: 0,
-    gameSpeed: 250,
+    gameSpeed: 20,
 }
 
 var data = {
@@ -164,6 +164,7 @@ function revealTabs() {
     }
     if (PowerData.currentPower >= 10000) {
         document.getElementById("WorkersTab").style.display = "block"
+        
     }
     if (StockpillData.wood > 0) {
         document.getElementById("woodDisplay").style.display = "block"
@@ -301,17 +302,30 @@ let setUpToolTip = function() {
 
 setUpToolTip()
 
-var xy = document.getElementById('myItem1').ldBar
+function mainLoopFast () {
+    workers()
+}
 
-var mainGameLoop = window.setInterval(function() {
+function mainLoopMediam () {
     slowTurbine()
     makePower(TurbineData.generatorEfficency * ((TurbineData.turbineSpeed + TurbineData.turbineMinSpeed) / 1000))
-    TurbineData.turbineMinSpeed = 0
-    workers()
     revealTabs()
-    useTelescope()
+    updateGraph()
+}
+
+function mainLoopSlow () {
     gatherMaterials()
     planetProduction()
-    updateGraph()
+    useTelescope()
+}
+
+var mainGameLoop = window.setInterval(function() {
+    mainLoopFast()
+    if (MiscellaneousData.gameTicks % 10 == 0) {
+        mainLoopMediam()
+    }
+    if (MiscellaneousData.gameTicks % 25 == 0) {
+        mainLoopSlow()
+    }
     MiscellaneousData.gameTicks += 1
 }, MiscellaneousData.gameSpeed)

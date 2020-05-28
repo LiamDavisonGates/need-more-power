@@ -76,6 +76,9 @@ function buyWorker() {
         document.getElementById("energyWorkers").style.color = "Azure"
         document.getElementById("energyWorkers+").style.display = "block"
         document.getElementById("energyWorkers-").style.display = "block"
+        document.getElementById("energyWorkersProgressFrame").style.display = "block"
+        document.getElementById("energyWorkersBar").style.display = "block"
+        document.getElementById("energyWorkersProgressBackground").style.display = "block"
     }
 }
 
@@ -155,7 +158,7 @@ function workers() {
             JobProgressBarData.energyBarWidth = 0
         } else {
             JobProgressBarData.energyBarWidth = 100-((JobTimeData.energyJobTimeCurrent/JobTimeData.energyJobTime)*100)
-            document.getElementById("energyWorkersBar").style.width = JobProgressBarData.energyBarWidth + "%"
+            document.getElementById("energyWorkersBar").style.width = JobProgressBarData.energyBarWidth/10.87 + "%"
         }
         if (JobTimeData.woodJobTimeCurrent <= 0) {
             JobTimeData.woodJobTimeCurrent = JobTimeData.woodJobTime
