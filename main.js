@@ -77,33 +77,33 @@ function updateGraph() {
   window.myLine.update();
 };
 
-function formatNumber(number) {
+function formatNumber(number, numberLength = MiscellaneousData.numberFormat) {
     if (number > 5000000000000000000) {
         number /= 1000000000000000000
-        number = number.toFixed(MiscellaneousData.numberFormat)
+        number = number.toFixed(numberLength)
         number = number + "E"
     } else if (number > 5000000000000000) {
         number /= 1000000000000000
-        number = number.toFixed(MiscellaneousData.numberFormat)
+        number = number.toFixed(numberLength)
         number = number + "P"
     } else if (number > 5000000000000) {
         number /= 1000000000000
-        number = number.toFixed(MiscellaneousData.numberFormat)
+        number = number.toFixed(numberLength)
         number = number + "T"
     } else if (number > 5000000000) {
         number /= 1000000000
-        number = number.toFixed(MiscellaneousData.numberFormat)
+        number = number.toFixed(numberLength)
         number = number + "G"
     } else if (number > 5000000) {
         number /= 1000000
-        number = number.toFixed(MiscellaneousData.numberFormat)
+        number = number.toFixed(numberLength)
         number = number + "M"
     } else if (number > 5000) {
         number /= 1000
-        number = number.toFixed(MiscellaneousData.numberFormat)
+        number = number.toFixed(numberLength)
         number = number + "K"
     } else {
-        number = number.toFixed(MiscellaneousData.numberFormat)
+        number = number.toFixed(numberLength)
     }
     return number
 }
@@ -164,7 +164,7 @@ function revealTabs() {
     }
     if (PowerData.currentPower >= 10000) {
         document.getElementById("WorkersTab").style.display = "block"
-        
+
     }
     if (StockpillData.wood > 0) {
         document.getElementById("woodDisplay").style.display = "block"

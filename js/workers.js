@@ -79,6 +79,7 @@ function buyWorker() {
         document.getElementById("energyWorkersProgressFrame").style.display = "block"
         document.getElementById("energyWorkersBar").style.display = "block"
         document.getElementById("energyWorkersProgressBackground").style.display = "block"
+        document.getElementById("energyWorkersProgress%").style.display = "block"
     }
 }
 
@@ -155,10 +156,12 @@ function workers() {
             JobTimeData.energyJobTimeCurrent = JobTimeData.energyJobTime
             spinTurbine(JobProductionData.energyJobProduction)
             document.getElementById("energyWorkersBar").style.width = 0
+            document.getElementById("energyWorkersProgress%").innerHTML = "0%"
             JobProgressBarData.energyBarWidth = 0
         } else {
             JobProgressBarData.energyBarWidth = 100-((JobTimeData.energyJobTimeCurrent/JobTimeData.energyJobTime)*100)
-            document.getElementById("energyWorkersBar").style.width = JobProgressBarData.energyBarWidth/11 + "%"
+            document.getElementById("energyWorkersBar").style.width = JobProgressBarData.energyBarWidth/0.92 + "px"
+            document.getElementById("energyWorkersProgress%").innerHTML = formatNumber(JobProgressBarData.energyBarWidth, 0) + "%"
         }
         if (JobTimeData.woodJobTimeCurrent <= 0) {
             JobTimeData.woodJobTimeCurrent = JobTimeData.woodJobTime
