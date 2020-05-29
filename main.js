@@ -35,47 +35,47 @@ var MiscellaneousData = {
     gameSpeed: 20,
 }
 
-var data = {
-  labels: ["0"],
-  datasets: [{
-    label: "Dataset #1",
-    backgroundColor: "rgba(255,99,132,0.2)",
-    borderColor: "rgba(255,99,132,1)",
-    borderWidth: 2,
-    hoverBackgroundColor: "rgba(255,99,132,0.4)",
-    hoverBorderColor: "rgba(255,99,132,1)",
-    data: [0],
-  }]
-};
+//var data = {
+//  labels: ["0"],
+//  datasets: [{
+//    label: "Dataset #1",
+//    backgroundColor: "rgba(255,99,132,0.2)",
+//    borderColor: "rgba(255,99,132,1)",
+//    borderWidth: 2,
+//    hoverBackgroundColor: "rgba(255,99,132,0.4)",
+//    hoverBorderColor: "rgba(255,99,132,1)",
+//    data: [0],
+//  }]
+//};
 
-var option = {
-  responsive: false,
-  scales: {
-    yAxes: [{
-      stacked: true,
-      gridLines: {
-        display: true,
-        color: "rgba(255,99,132,0.2)"
-      }
-    }],
-    xAxes: [{
-      gridLines: {
-        display: false
-      }
-    }]
-  }
-};
+//var option = {
+//  responsive: false,
+//  scales: {
+//    yAxes: [{
+//      stacked: true,
+//      gridLines: {
+//        display: true,
+//        color: "rgba(255,99,132,0.2)"
+//      }
+//    }],
+//    xAxes: [{
+//      gridLines: {
+//        display: false
+//      }
+//    }]
+//  }
+//};
 
-myLine = new Chart.Line('myChart', {
-  options: option,
-  data: data
-});
+//myLine = new Chart.Line('myChart', {
+//  options: option,
+//  data: data
+//});
 
-function updateGraph() {
-  myLine.data.datasets[0].data.push(TurbineData.turbineSpeed)
-  myLine.data.labels.push(String(MiscellaneousData.gameTicks))
-  window.myLine.update();
-};
+//function updateGraph() {
+//  myLine.data.datasets[0].data.push(TurbineData.turbineSpeed)
+//  myLine.data.labels.push(String(MiscellaneousData.gameTicks))
+//  window.myLine.update();
+//};
 
 function formatNumber(number, numberLength = MiscellaneousData.numberFormat) {
     if (number > 5000000000000000000) {
@@ -310,7 +310,7 @@ function mainLoopMediam () {
     slowTurbine()
     makePower(TurbineData.generatorEfficency * ((TurbineData.turbineSpeed + TurbineData.turbineMinSpeed) / 1000))
     revealTabs()
-    updateGraph()
+//    updateGraph()
 }
 
 function mainLoopSlow () {
